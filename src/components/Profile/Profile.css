@@ -1,0 +1,133 @@
+.profile {
+    max-width: 1280px;
+    background-color: #FFFFFF;
+    font-family: 'Inter', Arial, Helvetica, sans-serif; 
+}
+
+.myprofile {
+    padding-top: 74px;
+    padding-bottom: 70px;
+}
+
+.myprofile__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    padding-bottom: 106px;
+    }
+
+.myprofile__elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E8E8E8;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 410px;
+    width: 100%;
+}
+
+.profile__error {
+    display: flex;
+    max-width: 410px;
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+    .myprofile__elements:last-child {
+        border-bottom: none; 
+    }
+
+    .myprofile__element {
+        font-family: 'Inter', Arial, Helvetica, sans-serif; 
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 13px;
+        color: #000000;
+        text-align: right;
+        border: none;
+        outline: none;
+    }
+
+    .myprofile__update {
+        padding-top: 210px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+        color: #000000;
+        cursor: pointer;
+    }
+
+    .myprofile__update:hover {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+
+    .myprofile__out {
+        padding-top: 16px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+        color: #FF004D;
+        cursor: pointer;
+    }
+
+    .myprofile__out:hover {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+
+    @media screen and (max-width: 768px) {  
+        .myprofile {
+            padding-top: 236px;
+            padding-bottom: 269px;
+        }
+        .myprofile__title {
+            padding-bottom: 80px;
+            }
+        .myprofile__update {
+            padding-top: 200px;
+            }    
+    }
+
+    
+    @media screen and (max-width: 320px) {  
+        .myprofile {
+            padding-top: 70px;
+            padding-bottom: 40px;
+        }
+        .myprofile__title {
+            padding-bottom: 60px;
+            }
+        .myprofile__update {
+            padding-top: 365px;
+            font-size: 12px;
+            line-height: 15px;
+        }
+        .myprofile__out {
+            font-size: 12px;
+            line-height: 15px;
+        }
+        .myprofile__elements {
+            max-width: 260px;
+            width: 100%;
+        }
+    }
