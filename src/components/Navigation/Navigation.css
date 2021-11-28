@@ -95,6 +95,7 @@
     box-shadow: none;
     border-radius: 2px;
     border-color: #2F2F2F;
+    cursor: pointer;
 }
 
 .menu__header_type_tablet {

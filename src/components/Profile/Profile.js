@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
@@ -9,6 +9,7 @@ function Profile() {
     const [email, setEmail] =React.useState("pochta@yandex.ru");
     const [validName, setValidName] =React.useState(false);
     const [validEmail, setValidEmail] =React.useState(false);
+    const [openForm, setOpenForm] = useState(false);
 
     const changeName=(e) => {
         setName(e.target.value);
@@ -20,10 +21,14 @@ function Profile() {
         if (email.length<2) {setValidEmail(true)} else {setValidEmail(false)}
         }; 
 
+    const setOnForm=(value)=>{
+        setOpenForm(value);
+        }
+
   return (
-    <div className="profile">
+    <div className={`profile ${openForm ? "profile_type_dark":""}`} >
         <Header>
-            <Navigation />               
+            <Navigation setOnForm={ setOnForm }/>               
         </Header>
         <div className="myprofile">
             <div className="myprofile__title">Привет, {name}!</div>

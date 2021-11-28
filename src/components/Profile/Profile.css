@@ -4,6 +4,10 @@
     font-family: 'Inter', Arial, Helvetica, sans-serif; 
 }
 
+.profile_type_dark{
+    background-color: #000000;
+}
+
 .myprofile {
     padding-top: 74px;
     padding-bottom: 70px;
