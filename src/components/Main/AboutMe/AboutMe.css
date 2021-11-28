@@ -1,15 +1,15 @@
 .aboutme {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background-color: #FFFFFF;
+    background-color: #202020;
     padding: 110px 70px 100px 70px;   
 }
 
 .aboutme__header {
     font-size: 20px;
     line-height: 27px;
-    color: #000000;
+    color: #DADADA;
     padding-bottom: 23px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #DADADA;
     margin: 0;
     font-weight: 400;
 }
@@ -35,16 +35,18 @@
     padding-bottom: 18px;
     margin: 0;
     font-weight: 400;
+    color: #FFFFFF;
 }
 
 .aboutme__subtitle {
     font-size: 18px;
     line-height: 20px;
-    color: #111111;
+    color: #FFFFFF;
     padding-bottom: 26px;
 }
 
 .aboutme__text {
+    color: #FFFFFF;
     margin-top: 0;
     margin-bottom: 0;
     font-size: 14px;
@@ -65,7 +67,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    color: #000000;
+    color: #FFFFFF;
     margin-right: 20px;
     text-decoration: none;
 }

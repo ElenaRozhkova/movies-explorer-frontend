@@ -9,9 +9,7 @@ function MoviesCard({card}) {
                 <img className="card__image" src={`https://api.nomoreparties.co${card.image.url}`} alt={card.nameRU} />
                 <div className="card__title-container">
                     <h2 className="card__title">{card.nameRU}</h2>
-                    <div className="card__like-group">
-                        <button type="button" className={cardLikeButtonClassName}></button>
-                    </div>
+                    <button type="button" className={cardLikeButtonClassName}></button>
                 </div>
             </div>
             <div className="card__duration" > {card.duration}</div>

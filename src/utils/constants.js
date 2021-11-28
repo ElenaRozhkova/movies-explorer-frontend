@@ -1,7 +1,7 @@
 export const movies = [
     {
         "id": 1,
-        "nameRU": "«Роллинг Стоунз» в изгнанииРоллинг Стоунз» в изгнании",
+        "nameRU": "«Роллинг Стоунз» в изгнании",
         "nameEN": "Stones in Exile",
         "director": "Стивен Кайак ",
         "country": "США",

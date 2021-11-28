@@ -6,6 +6,7 @@
     min-height: 74px;
     padding-left: 60px;
     padding-right: 70px;
+    border-bottom: 2px solid #202020;
 }
 
 .mainlogo {
@@ -99,7 +100,7 @@
 }
 
 .menu__item-account_round {
-    background-image: url("../../images/account.png");
+    background-image: url("../../images/account.svg");
     background-size: 10px;
     background-color: #F5F5F5;
     border-radius: 50px;

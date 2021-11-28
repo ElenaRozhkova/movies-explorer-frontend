@@ -1,6 +1,6 @@
 .techs {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background-color: #F5F5F5;;
+    background-color: #272727;
     padding: 100px 70px;   
 }
 .techs__header {
@@ -8,14 +8,15 @@
     line-height: 27px;
     font-style: normal;
     font-weight: normal;
-    color: #000000;
+    color: #DADADA;
     padding-bottom: 23px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #DADADA;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 .techs__title {
+    color: #FFFFFF;
     font-size: 46px;
     line-height: 58px;
     text-align: center;
@@ -27,6 +28,7 @@
 }
 
 .techs__subtitle {
+    color: #DADADA;
     font-size: 13px;
     line-height: 20px;
     margin: 0 auto;
@@ -48,8 +50,8 @@
 .techs__item {
     width: 90px;
     height: 60px;
-    background-color: #E8E8E8;
-    color: #000000;
+    background-color: #303030;
+    color: #DADADA;
     border-radius: 10px;
     font-size: 14px;
     line-height: 17px;

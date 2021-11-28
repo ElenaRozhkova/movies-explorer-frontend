@@ -1,25 +1,30 @@
 .card {
     max-width: 270px;
-    height: 230px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .card__image {
     width: 270px;
     height: 151px;
-    padding-bottom: 6px;
+    padding-bottom: 14px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .card__size {
-    border-bottom: 1px solid #E8E8E8;
-    height: 210px;
+    height: 190px;
+    background-color: #222222;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
 }
 
 .card__title-container {
     display: flex;
     justify-content: space-between;
     align-items:flex-start;
-    padding-bottom: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .card__title {
@@ -31,17 +36,18 @@
     font-weight: 500;
     margin-top: 0;
     margin-bottom: 0;
+    color: #FFFFFF;
 }
 
 .card__vector-like {
     border:1px solid #F5F5F5;
     background:#F5F5F5;
     color:white;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     border-radius: 36px;
-    background-image: url("./../../images/like_white.svg");
-    background-size: 10px;
+    background-image: url("./../../images/like.svg");
+    background-size: 16px;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -49,15 +55,19 @@
 }
 
 .card__vector-like:hover {
-    background-image: url("./../../images/like.svg");
+    background-image: url("./../../images/like_white.svg");
     transition: 0.8s;
 }
 
 .card__duration {
-    padding-top: 6px;
-    color: #A0A0A0;
+    padding-top: 10px;
+    color: #8B8B8B;
     font-size: 11px;
     line-height: 13px;
+    background-color: #222222;
+    padding-left: 12px;
+    padding-bottom: 14px;
+    border-radius: 0 0 10px 10px;
 }
 
 @media screen and (max-width: 800px) {

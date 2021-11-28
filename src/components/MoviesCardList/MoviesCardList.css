@@ -1,6 +1,6 @@
 .movieslist {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    padding: 80px 70px 80px 70px;
+    padding: 70px 70px 80px 70px;
 }
 .movieslist-container {    
     display: grid;
@@ -12,12 +12,15 @@
 }
 
 .movieslist__more {
+    max-width: 320px;
     width: 100%;
-    margin-top: 60px;
-    background: #F9F9F9;
-    display: flex;
-    justify-content: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background: #2F2F2F;
+    margin-left: auto;
+    margin-right: auto;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .movieslist__more:hover {
@@ -31,8 +34,8 @@
     font-size: 12px;
     line-height: 15px;
     text-align: center;
-    color: #000000;
-    background: #F9F9F9;
+    color: #fff;
+    background: #2F2F2F;
     width: 320px;
     height: 36px;
     padding: 0;

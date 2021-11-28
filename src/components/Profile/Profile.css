@@ -1,6 +1,6 @@
 .profile {
     max-width: 1280px;
-    background-color: #FFFFFF;
+    background-color: #202020;
     font-family: 'Inter', Arial, Helvetica, sans-serif; 
 }
 
@@ -16,6 +16,7 @@
     line-height: 29px;
     text-align: center;
     padding-bottom: 106px;
+    color: #FFFFFF;
     }
 
 .myprofile__elements {
@@ -57,7 +58,8 @@
         font-weight: 500;
         font-size: 11px;
         line-height: 13px;
-        color: #000000;
+        color: #FFFFFF;
+        background-color:#202020;
         text-align: right;
         border: none;
         outline: none;
@@ -70,7 +72,7 @@
         font-size: 13px;
         line-height: 16px;
         text-align: center;
-        color: #000000;
+        color: #FFFFFF;
         cursor: pointer;
     }
 

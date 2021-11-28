@@ -1,5 +1,5 @@
 .login {
-    background-color: #FFFFFF;
+    background-color: #202020;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
@@ -41,6 +41,7 @@
     padding-top: 40px;
     margin-top: 0;
     margin-bottom: 0;
+    color: #fff;
 }
 
 .login__form {
@@ -63,11 +64,11 @@
 
 .login__input {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background: #F9F9F9;
+    background: #2F2F2F;
     border-radius: 8px;
     font-size: 13px;
     line-height: 16px;
-    color: #000000;
+    color: #fff;
     max-width: 396px;
     width: 100%;
     margin-bottom: 20px;
@@ -78,7 +79,7 @@
 }
 
 .login__input::placeholder { 
-    color: #000000;
+    color: #fff;
 }
 
 .login__input_type_error {

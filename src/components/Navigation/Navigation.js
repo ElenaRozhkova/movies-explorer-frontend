@@ -1,10 +1,10 @@
 import React from "react";
 import './Navigation.css';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo__movies.svg';
-import logoTablet from '../../images/logo_tablet.png';
-import menu from '../../images/menu.png';
-import close from '../../images/close.png';
+import logo from '../../images/logo__COLOR_main-1.svg';
+import logoTablet from '../../images/logo__COLOR_main-1.svg';
+import menu from '../../images/menu.svg';
+import close from '../../images/close.svg';
 
 function Navigation() {
   const [form, setForm] = React.useState(false);
@@ -22,8 +22,8 @@ function Navigation() {
             <Link to="/" className="logo_type_desktop"><img src={logo} alt="logoDesktop" className="logo" /></Link>
             <Link to="/" className="logo_type_tablet"><img src={logoTablet} alt="logoTablet" className="logo " /></Link>
                   <nav className="menu__header menu__header_size menu__header_type_desktop">
-                  <Link to="/movies" style={{ textDecoration: 'none' }}><div className="menu__item-movies menu__item_dark">Фильмы</div></Link>
-                  <Link to="/saved-movies" style={{ textDecoration: 'none' }}><div className="menu__item-movies menu__item_dark menu__item_style_size">Сохранённые фильмы</div></Link>
+                  <Link to="/movies" style={{ textDecoration: 'none' }}><div className="menu__item-movies ">Фильмы</div></Link>
+                  <Link to="/saved-movies" style={{ textDecoration: 'none' }}><div className="menu__item-movies  menu__item_style_size">Сохранённые фильмы</div></Link>
                       <button className="menu__button-movies">
                           <Link to="/profile" className="menu__item-movies menu__item_account_size">Аккаунт</Link>
                           <button className="menu__item-account_round" />
@@ -38,7 +38,7 @@ function Navigation() {
                         <img className="close-image" src={close} alt="close" onClick={closeForm}/>
                             <nav className="form__menu">
                                 <div className="form__items">
-                                <Link to="/"><div className="form__item">Главная</div></Link>
+                                <Link to="/" style={{ textDecoration: 'none' }}><div className="form__item">Главная</div></Link>
                                 <Link to="/movies" style={{ textDecoration: 'none' }}><div className="form__item">Фильмы</div></Link>
                                 <Link to="/saved-movies" style={{ textDecoration: 'none' }}><div className="form__item">Сохранённые фильмы</div></Link>
                                 </div>
