@@ -2,7 +2,6 @@ import React from "react";
 import './Navigation.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo__COLOR_main-1.svg';
-import logoTablet from '../../images/logo__COLOR_main-1.svg';
 import menu from '../../images/menu.svg';
 import NavForm from "../NavForm/NavForm";
 
@@ -20,7 +19,7 @@ function Navigation({ setOnForm }) {
   }
 
   return (
-          <>
+          <div className={`navigation ${form ? "navigation_type_dark":""}`} >
             <Link to="/" className="logo_type_desktop"><img src={logo} alt="logoDesktop" className="logo" /></Link>
                   <nav className="menu__header menu__header_size menu__header_type_desktop">
                     <Link to="/movies" style={{ textDecoration: 'none' }}><div className="menu__item-movies ">Фильмы</div></Link>
@@ -35,7 +34,7 @@ function Navigation({ setOnForm }) {
                      <img className="menu__image" src ={menu} alt="menu" /> 
                   </div> 
             <NavForm form={ form } closeForm={closeForm}/>
-            </>
+            </div>
   );
 }
 

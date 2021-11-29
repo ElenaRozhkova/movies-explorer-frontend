@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import './Profile.css';
 
@@ -27,9 +26,7 @@ function Profile() {
 
   return (
     <div className={`profile ${openForm ? "profile_type_dark":""}`} >
-        <Header>
-            <Navigation setOnForm={ setOnForm }/>               
-        </Header>
+        <Navigation setOnForm={ setOnForm }/>               
         <div className="myprofile">
             <div className="myprofile__title">Привет, {name}!</div>
             <div className="myprofile__container">

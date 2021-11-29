@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './SavedMovies.css';
-import Header from './../Header/Header';
 import SearchForm from './../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Navigation from './../Navigation/Navigation';
+import Preloader from '../Preloader/Preloader';
 
 
 function SavedMovies( ) {
@@ -16,11 +16,9 @@ function SavedMovies( ) {
 
   return (
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
-        <Header>
-            <Navigation setOnForm={ setOnForm } />               
-        </Header>
+        <Navigation setOnForm={ setOnForm } />               
         <SearchForm />
-        <MoviesCardList />
+        {isSubmitting ? <Preloader /> : <MoviesCardList />}
     </div>
   );
 }
