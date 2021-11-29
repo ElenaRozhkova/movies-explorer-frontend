@@ -24,6 +24,12 @@
     background-color: #2F2F2F;
     border-radius: 4px;
     padding-left: 22px;
+    text-decoration: none;
+    
+}
+
+.search__input:focus {
+    text-decoration: underline #C4C4C4;
 }
 
 .search__input:focus {

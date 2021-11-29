@@ -6,7 +6,7 @@
     min-height: 74px;
     padding-left: 60px;
     padding-right: 70px;
-    border-bottom: 2px solid #202020;
+    box-shadow: 0 4px 6px -6px #222;
     background-color: #073042;
 }
 
@@ -66,6 +66,7 @@
     height: 32px;
     margin-left: 30px;
     cursor: pointer;
+    border: none;
 }
 
 .menu__button:hover {

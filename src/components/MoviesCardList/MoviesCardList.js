@@ -4,13 +4,13 @@ import MoviesCard from "../MoviesCard/MoviesCard"
 import { movies } from '../../utils/constants';
 
 
-function MoviesCardList() {
+function MoviesCardList({deleteMovies}) {
     return (
         <>
       <div className="movieslist">
         <div className="movieslist-container">
               {movies.map((card, i) => (
-                    <MoviesCard  key={i} card={card} />
+                    <MoviesCard  key={i} card={card} deleteMovies={deleteMovies} />
                 ))}
         </div>
         <div className="movieslist__more">

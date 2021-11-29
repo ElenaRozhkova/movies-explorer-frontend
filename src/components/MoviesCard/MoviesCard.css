@@ -54,6 +54,21 @@
     transition: 0.3s;
 }
 
+.card__vector-delete {
+    border:1px solid #222222;
+    background:#222222;
+    color:white;
+    width: 16px;
+    height: 16px;
+    border-radius: 36px;
+    background-image: url("./../../images/delete.svg");
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 .card__vector-like:hover {
     background-image: url("./../../images/like_white.svg");
     transition: 0.8s;

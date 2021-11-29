@@ -9,6 +9,7 @@ import Preloader from '../Preloader/Preloader';
 function SavedMovies( ) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openForm, setOpenForm] = useState(false);
+  const [deleteMovies, setDeleteMovies] = useState(false);
   
   const setOnForm=(value)=>{
     setOpenForm(value);
@@ -18,7 +19,7 @@ function SavedMovies( ) {
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm } />               
         <SearchForm />
-        {isSubmitting ? <Preloader /> : <MoviesCardList />}
+        {isSubmitting ? <Preloader /> : <MoviesCardList deleteMovies={deleteMovies}/>}
     </div>
   );
 }

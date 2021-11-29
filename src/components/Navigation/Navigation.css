@@ -108,14 +108,7 @@
     display: none;
 }
 
-.form__menu {
-    padding-top: 159px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 770px;
-}
+
 
 .menu__image:hover {
     opacity: 0.8;
@@ -171,7 +164,4 @@
         height: 43px;
     }
 
-    .form__menu {
-        height: 530px;
-    }
   }
