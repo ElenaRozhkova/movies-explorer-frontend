@@ -14,10 +14,6 @@
     cursor: pointer;
 }
 
-.logo_type_tablet {
-    display: none;
-}
-
 .menu__header {
     display: flex;
     justify-content: space-between;
@@ -122,12 +118,6 @@
         padding-right: 30px;
         min-height: 74px;
     } 
-    .logo_type_tablet {
-        display: inline;
-    } 
-    .logo_type_desktop {
-        display: none;
-    }
     .menu__header_type_desktop {
         display: none;
     }
@@ -155,11 +145,6 @@
         width: 54px;
         height: 26px;
         margin-left: 14px;
-    }
-    .logo_type_tablet {
-        height: 43px;
-        width: 40px;
-
     }
     .menu__header_type_tablet {
         margin-left: auto;
