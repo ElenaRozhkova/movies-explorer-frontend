@@ -69,6 +69,11 @@
         outline: none;
     }
 
+    .myprofile__element:focus {
+        outline: none;
+        border-bottom: 1px solid #3DDC84;
+    }
+
     .myprofile__update {
         padding-top: 210px;
         font-style: normal;

@@ -18,7 +18,6 @@
 
 .project__about {
     display: flex;
-    flex-wrap: wrap;
     padding-top: 70px;
 }
 
@@ -143,6 +142,7 @@
     }
     .project__about {
         padding-top: 60px;
+        flex-wrap: wrap;
     }
     .project__about-info {
         margin-right: 30px;

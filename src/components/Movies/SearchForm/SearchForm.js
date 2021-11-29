@@ -7,7 +7,7 @@ function SearchForm() {
       <section className="search-container">
         <form className="search">
           <input type="text" className="search__input" placeholder="Фильм" required />
-          <button className="search__input-img"></button>
+          <button className="search__input-img">Найти</button>
         </form> 
         <FilterCheckbox />
       </section>

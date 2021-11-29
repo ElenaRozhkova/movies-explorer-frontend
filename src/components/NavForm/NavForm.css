@@ -14,7 +14,7 @@
 
 
 .form__menu {
-    height: 80%;
+    height: 70vh;
     margin-top: 159px;
     margin-bottom: 92px;
     display: flex;
@@ -99,8 +99,9 @@
     }
     .menu__button-movies {
         margin-top: 410px;
+        margin-bottom: 48px;
     }
     .form__menu {
-        height: 530px;
+        height: 80vh;
     }
   }

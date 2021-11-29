@@ -63,6 +63,11 @@
     background-color: #2F2F2F;
 }
 
+.register__input:focus {
+    outline: none;
+    border-bottom: 1px solid #4285F4;
+}
+
 .register__input::placeholder { 
     color: #fff;
 }
