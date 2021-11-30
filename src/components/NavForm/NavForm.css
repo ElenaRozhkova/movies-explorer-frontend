@@ -1,0 +1,104 @@
+.form {
+    display: none;
+    background-color: #202020;
+    color: #fff;
+    max-width: 520px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: left .5s;
+    font-family: 'Inter', 'Alegreya Sans', sans-serif;
+}
+
+
+.form__menu {
+    padding-top: 159px;
+    padding-bottom: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.form__open {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.close-image {
+    width: 22px;
+    height: 22px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+
+.form__item {
+    display: block;
+    margin-bottom: 28px;
+    color: #fff;
+}
+
+.form__item:hover {
+    text-decoration: underline;
+}
+.menu__item-movies {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
+.menu__button-movies:hover {
+    opacity: 0.8;
+}
+
+.menu__button-movies_type_mobile {
+    margin-left: 0;
+    margin-top: 300px;
+}
+
+.menu__item_dark {
+    color: #000000;
+}
+
+.menu__item_account_size {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 12px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu__item-account_round {
+    background-image: url("../../images/account.svg");
+    background-color: #2F2F2F;
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 11px;
+    box-shadow: none;
+    border-radius: 4px;
+    border-color: #2F2F2F;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {  
+
+    .menu__item {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .menu__header_type_tablet {
+        margin-left: auto;
+    }
+    .form__menu {
+        margin-bottom: 48px;
+    }
+    .menu__button-movies_type_mobile {
+        margin-top: 380px;
+    }
+  }

@@ -1,0 +1,9 @@
+.movies {
+    max-width: 1280px;
+    background-color: #202020;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;    
+}
+
+.movies_type_dark{
+    background-color: #000000;
+}
