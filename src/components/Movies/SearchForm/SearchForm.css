@@ -13,6 +13,17 @@
     line-height: 18px;
 }
 
+.search__error {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 .search__input {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     max-width: 1030px; 

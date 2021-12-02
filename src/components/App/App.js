@@ -23,28 +23,40 @@ function App() {
     setIsSubmitting(true);
   }
 
+  const createCards =(movies)=>{
+    setCards(movies.map(item => ({
+      country: item.country,
+      director: item.director,
+      duration: item.duration,
+      year: item.year,
+      description: item.description,
+      image: `https://api.nomoreparties.co${item.image.url}`,
+      trailer: item.trailerLink,              
+      thumbnail: item.image.formats.thumbnail,
+      movieId:  item.id,
+      nameRU: item.nameRU,              
+      nameEN: item.nameEN,
+    })))
+  }
+  useEffect(() => {
+    if (localStorage.getItem('movies')) {
+    const movies=JSON.parse(localStorage.getItem('movies'));
+    createCards(movies);
+  }
+  }, [])
+
   useEffect(() => {
     if (isSubmitting) {
       moviesApi.search()
           .then(data => {
-            localStorage.setItem('movies', JSON.stringify(data));
             setNotMovies('');
             const movies = data.filter(v => v.nameRU.includes(searchQuery) && searchQuery!=="");
-            if (movies.length === 0) {setNotMovies('Ничего не найдено');}
+            if (movies.length === 0) {setNotMovies('Ничего не найдено');} 
+            else{
+              localStorage.setItem('movies', JSON.stringify(movies));
+            }
             setIsSubmitting(false);
-            setCards(movies.map(item => ({
-              country: item.country,
-              director: item.director,
-              duration: item.duration,
-              year: item.year,
-              description: item.description,
-              image: `https://api.nomoreparties.co${item.image.url}`,
-              trailer: item.trailerLink,              
-              thumbnail: item.image.formats.thumbnail,
-              movieId:  item.id,
-              nameRU: item.nameRU,              
-              nameEN: item.nameEN,
-            })))
+            createCards(movies);
           })
           .catch((err)=>{
             console.log(err);
@@ -72,7 +84,12 @@ function App() {
             </Route>
 
             <Route path="/saved-movies" > 
-              <SavedMovies /> 
+              <SavedMovies cards={cards}
+                      isSubmitting={isSubmitting}
+                      searchQuery={searchQuery}
+                      setSearchQuery={setSearchQuery}
+                      handleSubmit={handleSubmit} 
+                      notMovies={notMovies} /> 
               <Footer />       
             </Route>
 

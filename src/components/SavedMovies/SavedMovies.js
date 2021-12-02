@@ -6,8 +6,7 @@ import Navigation from './../Navigation/Navigation';
 import Preloader from '../Preloader/Preloader';
 
 
-function SavedMovies( ) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+function SavedMovies({setSearchQuery, searchQuery, handleSubmit, isSubmitting, cards, notMovies } ) {
   const [openForm, setOpenForm] = useState(false);
   const [deleteMovies, setDeleteMovies] = useState(false);
   
@@ -19,7 +18,7 @@ function SavedMovies( ) {
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm } />               
         <SearchForm />
-        {isSubmitting ? <Preloader /> : <MoviesCardList deleteMovies={deleteMovies}/>}
+        {isSubmitting ? <Preloader /> : <MoviesCardList cards={cards} deleteMovies={deleteMovies} notMovies={notMovies}/>}
     </div>
   );
 }
