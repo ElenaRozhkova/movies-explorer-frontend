@@ -1,22 +1,22 @@
 import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard"
-import { movies } from '../../utils/constants';
 
-
-function MoviesCardList({deleteMovies}) {
+function MoviesCardList({cards, deleteMovies, notMovies}) {
     return (
         <>
-      <div className="movieslist">
+      {notMovies ? <div className="movieserror">{notMovies}</div> : 
+       <div className="movieslist">
         <div className="movieslist-container">
-              {movies.map((card, i) => (
+              {cards.map((card, i) => (
                     <MoviesCard  key={i} card={card} deleteMovies={deleteMovies} />
                 ))}
         </div>
         <div className="movieslist__more">
           <button className="movieslist__button">Ещё</button>
         </div>      
-      </div>   
+      </div> }
+  
       </>
     )
 }
