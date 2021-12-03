@@ -28,7 +28,7 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike}) {
   }
 
   useEffect(() => {
-    if (location === '/movies') {
+    if ((location === '/movies')||(location === '/saved-movies')) {
       if (windowWidth <= 480) {
         setCurrentCards(cards.slice(0, 5));
         setCountMoreCards(2);
@@ -40,8 +40,7 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike}) {
         setCountMoreCards(4);
       }
     } 
-  }, [windowWidth,cards.length,location,]);
-
+  }, [windowWidth,cards.length,location]);
 
     return (
         <>

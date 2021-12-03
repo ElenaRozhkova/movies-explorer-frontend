@@ -10,8 +10,10 @@ import Register from '../Register/Register'
 import Login from '../Login/Login'
 import NotFound from '../NotFound/NotFound'
 import moviesApi from '../../utils/MoviesApi';
-import { createApi } from '../../utils/MainApi';
+import authApi from '../../utils/MainApi';
+import { createApiUser } from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 
 
@@ -24,9 +26,26 @@ function App() {
   const [notMovies, setNotMovies] = useState('');
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [text, setText] = React.useState('');
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
+  const [api, setApi] = React.useState({});
  
-  const mainApi = createApi();
+  const updateProfile = (token) => {
+    const moviesApi = createApiUser(token);
+    setApi(moviesApi);
+    moviesApi.getUser()
+    .then((user)=>{            
+      setCurrentUser(user);})
 
+   /* Promise.all([newApi.getUserInfo(), newApi.getInitialCards()])
+        .then(([userData, dataCards]) => {
+            setCurrentUser(userData);
+            setСards(dataCards);
+        })
+        .catch((err) => {
+            console.log(err);
+        });*/
+};
 
   useEffect(() => {
     if (localStorage.getItem('movies')) {
@@ -79,23 +98,20 @@ function App() {
     })))
   }
     const handleCardLike=(movie)=>{
-      console.log(movie);
-      /*console.log(movie);
-      mainApi.createMovie(movie)
+      api.createMovie(movie)
        .then((saveMovie)=>{
-         setSaveCards(saveMovie);
-         console.log(saveMovie);
+         setSaveCards([...saveCards, {...saveMovie}]);
        })
        .catch((err) => {
         console.log(err);
-         });*/
+         });
     }
 
     const handleLoginClick=(value)=> {
       setIsInfoTooltipOpen(value);
   }
     const onRegister = (email, password, name) => {
-      mainApi.register(email, password, name)
+      authApi.register(email, password, name)
           .then((res) => {
               if (res) {
                 setText("Вы успешно зарегистрировались!");
@@ -108,12 +124,58 @@ function App() {
           })
   }
 
+  const onLogin = (email, password) => {
+    console.log(email, password);
+    authApi.login(email, password)
+      .then((data) => {
+          if (data.token) {
+              localStorage.setItem('jwt', data.token);
+              email = '';
+              password = '';
+              handleLogin(); // обновляем стейт внутри App.js
+              tokenCheck();
+              history.push('/movies'); // и переадресуем пользователя! 
+          }
+      })
+    .catch(err => {console.log(err)});
+}
+
+  const tokenCheck =() =>{
+    // если у пользователя есть токен в localStorage,
+    // эта функция проверит валидность токена
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+        // проверим токен
+        authApi.getContent(jwt)
+        .then((res) => {
+            if (res) {
+                // авторизуем пользователя
+                setLoggedIn(true);
+                updateProfile(jwt);
+                history.push("/movies");
+            }
+        })            
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+  }
+
+  React.useEffect(() => {
+    tokenCheck()
+}, []);
+
   const closePopupNew=()=> {
     setIsInfoTooltipOpen(false);
     history.push('/signin');
 }
+
+const handleLogin=()=> {
+  setLoggedIn(true);
+}
   return (
     <div className="App">
+        <CurrentUserContext.Provider value={currentUser} >
         <div className="root">
           <Switch>
             <Route path="/movies" > 
@@ -146,7 +208,7 @@ function App() {
             </Route>
 
             <Route path="/signin" > 
-              <Login />        
+              <Login onLogin={onLogin}/>        
             </Route>
           
             <Route path="/" exact>
@@ -164,6 +226,7 @@ function App() {
                             text={text}
                         />
         </div>
+        </CurrentUserContext.Provider>
     </div>
   );
 }

@@ -2,11 +2,27 @@ class Api {
 
     constructor(options) {
         this._url = options.url;
+        this._headers=options.headers;
     }
 
-  createMovie(movie) {
+   _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
+    }
+
+    getUser () {
+        return fetch(`${this._url}/users/me`, {
+                headers: this._headers
+            })
+            .then(res => this._getResponseData(res));
+    }
+
+    createMovie(movie) {
         return fetch(`${this._url}/movies`, {
                 method: 'POST',
+                headers: this._headers,
                 body: JSON.stringify({
                     country: movie.country,
                     director:movie.director,
@@ -15,7 +31,7 @@ class Api {
                     description:movie.description,
                     image:movie.image,
                     trailer:movie.trailer,
-                    thumbnail:movie.thumbnail,
+                    thumbnail:movie.image,
                     owner:movie.owner,
                     movieId:movie.movieId,
                     nameRU:movie.nameRU,
@@ -25,33 +41,62 @@ class Api {
             .then(res => this._getResponseData(res))
     }
 
- register = (email, password, name) => {
+  register = (email, password, name) => {
         return fetch(`${this._url}/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            "email": email,
-            "password": password,
-            "name": name
+            email: email,
+            password: password,
+            name: name
             })
         })
         .then(res => this._getResponseData(res));
       };  
 
-    _getResponseData(res) {
-        if (!res.ok) {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-        return res.json();
-    }
 
+ login =(email,password) => {
+    return fetch(`${this._url}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        })
+    })
+    .then(res => this._getResponseData(res));
+  };
+  
+   getContent = (jwt) => {
+    return fetch(`${this._url}/users/me`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${jwt}`
+      }})
+      .then(res => this._getResponseData(res));
+    };
 }
 
-
-export const createApi = () => {
+const createApi = () => {
     return new Api({
         url: "http://localhost:3001",
     });
 };
+
+export const createApiUser = (token) => {
+    return new Api({
+        url: "http://localhost:3001",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
+const authApi = createApi();
+export default authApi;

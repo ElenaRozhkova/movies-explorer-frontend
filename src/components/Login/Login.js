@@ -4,7 +4,7 @@ import './../Register/Register.css';
 import logo from './../../images/logo__COLOR_main-1.svg';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Login({onLogin}) {
     const [validEmail, setValidEmail] =React.useState(false);
     const [validPassword, setValidpassword] =React.useState(false);
     const [email, setEmail] =React.useState('');
@@ -19,14 +19,23 @@ function Login() {
     const changePassword=(e) => {
         setPassword(e.target.value);
         if (password.length<8) {setValidpassword(true)} else {setValidpassword(false)}
-        };  
+        }; 
+        
+    const handleSubmit=(e)=>{
+            e.preventDefault();
+            if (!email || !password){
+              return;
+            }
+            onLogin(email, password);
+        
+          }    
 
   return (
     <div className="login">
         <div className="login__container">
             <Link to="/"><img className="login__logo" src={logo} alt="logo" /></Link>
             <p className="login__title">Рады видеть!</p>
-            <form className="login__form">
+            <form className="login__form" onSubmit={handleSubmit}>
                 <div className="login__conteiner">
                     <label className="login__subtitle"> E-mail </label>
                     <input className={`login__input ${email.length<2 ? "login__input_type_error":""}`} type="email" value={email || ""} onChange={changeEmail} required id="Email" name="Email" placeholder="pochta@yandex.ru" />
@@ -38,7 +47,7 @@ function Login() {
                 </div>
             
                 <div className="login__button">
-                   <Link to="/movies" style={{ textDecoration: 'none' }}><button type="submit" className="login__link">Войти</button></Link>
+                   <button type="submit" className="login__link">Войти</button>
                 </div>
                 <div className="login__submit">Ещё не зарегистрированы?  <Link to="/signup" style={{ textDecoration: 'none' }}><div className="login__submit_type_blau">Регистрация</div></Link></div>
             </form>

@@ -17,7 +17,7 @@ function Main() {
             <nav className="menu__header">
                 <Link to="/signup" className="menu__item">Регистрация</Link>
                 <button className="menu__button">
-                    <Link to="/movies" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Войти</Link>
+                    <Link to="/signin" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Войти</Link>
                 </button>
             </nav>
      </Header>

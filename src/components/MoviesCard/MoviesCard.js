@@ -1,9 +1,11 @@
 import React from 'react';
 import './MoviesCard.css';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function MoviesCard({card, deleteMovies, onCardLike}) {
     const [isLiked, setIsLiked]=React.useState('false');
     const [isLikedColor, setIsLikedColor]=React.useState("card__vector-like");
+    const currentUser = React.useContext(CurrentUserContext);
 
     function handleLikeClick() {
         setIsLiked(!isLiked);
@@ -18,7 +20,6 @@ function MoviesCard({card, deleteMovies, onCardLike}) {
                 <img className="card__image" src={card.image} alt={card.nameRU} />
                 <div className="card__title-container">
                     <h2 className="card__title">{card.nameRU}</h2>
-                    {console.log(isLikedColor)}
                     <button type="button" onClick={handleLikeClick} className={` ${deleteMovies ? isLikedColor :"card__vector-delete"}`}></button>
                 </div>
             </div>
