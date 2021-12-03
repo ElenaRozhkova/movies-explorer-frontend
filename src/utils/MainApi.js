@@ -19,6 +19,13 @@ class Api {
             .then(res => this._getResponseData(res));
     }
 
+    getMovies() {
+      return fetch(`${this._url}/movies`, {
+              headers: this._headers
+          })
+          .then(res => this._getResponseData(res))
+  }
+
     createMovie(movie) {
         return fetch(`${this._url}/movies`, {
                 method: 'POST',
@@ -40,6 +47,14 @@ class Api {
             })
             .then(res => this._getResponseData(res))
     }
+
+    deleteMovie = (movieID) => {
+      return fetch(`${this._url}/movies/${movieID}`, {
+        method: 'DELETE',
+        headers: this._headers
+    })
+    .then(res => this._getResponseData(res))
+}
 
   register = (email, password, name) => {
         return fetch(`${this._url}/signup`, {

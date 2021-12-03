@@ -29,22 +29,22 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [api, setApi] = React.useState({});
+  const [savedCardsId, setSavedCardsId] = React.useState([]);
+  
  
   const updateProfile = (token) => {
     const moviesApi = createApiUser(token);
     setApi(moviesApi);
-    moviesApi.getUser()
-    .then((user)=>{            
-      setCurrentUser(user);})
-
-   /* Promise.all([newApi.getUserInfo(), newApi.getInitialCards()])
-        .then(([userData, dataCards]) => {
-            setCurrentUser(userData);
-            setСards(dataCards);
+    Promise.all([moviesApi.getUser(), moviesApi.getMovies()])
+        .then(([user, savemovies]) => {
+            setCurrentUser(user);
+            setSaveCards(savemovies);
+            const savemovieId = savemovies.map((movie) => movie.movieId);
+            setSavedCardsId(savemovieId);
         })
         .catch((err) => {
             console.log(err);
-        });*/
+        });
 };
 
   useEffect(() => {
@@ -101,6 +101,30 @@ function App() {
       api.createMovie(movie)
        .then((saveMovie)=>{
          setSaveCards([...saveCards, {...saveMovie}]);
+         setSavedCardsId([...savedCardsId, saveMovie.movieId]);
+         console.log(savedCardsId);
+       })
+       .catch((err) => {
+        console.log(err);
+         });
+    }
+
+    const handleCardDelete=(movie)=>{
+      const movieDeleteId = saveCards.filter(v => v.movieId===movie.movieId);
+      api.deleteMovie(movieDeleteId[0]._id)
+       .then((deleteMovie)=>{
+         console.log(deleteMovie);
+          // Формируем новый массив на основе имеющегося, удаляя из него карточку card._id
+          const newSaveMovies = saveCards.filter(function (c) {
+            return c._id !== movie._id;
+           });
+          const filteredMoviesIds = savedCardsId.filter(function (id) {
+            return id !== deleteMovie.movieId;
+          });
+        // Обновляем стейт
+        setSaveCards(newSaveMovies);
+        setSavedCardsId(filteredMoviesIds);
+        //setCards(newMovies);
        })
        .catch((err) => {
         console.log(err);
@@ -125,7 +149,6 @@ function App() {
   }
 
   const onLogin = (email, password) => {
-    console.log(email, password);
     authApi.login(email, password)
       .then((data) => {
           if (data.token) {
@@ -185,7 +208,9 @@ const handleLogin=()=> {
                       setSearchQuery={setSearchQuery}
                       handleSubmit={handleSubmit} 
                       notMovies={notMovies}
-                      onCardLike={handleCardLike} /> 
+                      onCardLike={handleCardLike}
+                      savedCardsId={savedCardsId} 
+                      onCardDelete={handleCardDelete}/> 
               <Footer />       
             </Route>
 
@@ -195,7 +220,9 @@ const handleLogin=()=> {
                       searchQuery={searchQuery}
                       setSearchQuery={setSearchQuery}
                       handleSubmit={handleSubmit} 
-                      notMovies={notMovies} /> 
+                      notMovies={notMovies}
+                      onCardDelete={handleCardDelete}
+                      savedCardsId={savedCardsId} /> 
               <Footer />       
             </Route>
 
