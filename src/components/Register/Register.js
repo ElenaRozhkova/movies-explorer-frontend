@@ -3,7 +3,7 @@ import './Register.css';
 import logo from './../../images/logo__COLOR_main-1.svg';
 import { Link } from 'react-router-dom';
 
-function Register() {
+function Register({onRegister}) {
     const [validname, setValidname] =React.useState(false);
     const [validEmail, setValidEmail] =React.useState(false);
     const [validPassword, setValidpassword] =React.useState(false);
@@ -25,14 +25,20 @@ function Register() {
     const changePassword=(e) => {
         setPassword(e.target.value);
         if (password.length<8) {setValidpassword(true)} else {setValidpassword(false)}
-        };     
+        };  
+        
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("nananana");
+        onRegister(email, password, name);
+    }    
 
   return (
     <div className="register">
         <div className="register__container">
             <Link to="/"><img className="register__logo" src={logo} alt="logo" /></Link>
             <p className="register__title">Добро пожаловать!</p>
-            <form className="register__form">
+            <form className="register__form" onSubmit={handleSubmit}>
                 <div className="register__conteiner">
                     <label className="register__subtitle"> Имя </label>
                     <input className={`register__input ${name.length<2 ? "register__input_type_error":""}`} value={name || ""} onChange={changeName} type="text" required id="Name" name="Name" placeholder="Виталий" />
@@ -48,9 +54,9 @@ function Register() {
                 </div>
             
                 <div className="register__button-container">
-                <Link to="/" style={{ textDecoration: 'none' }}><button type="submit" className="register__link" >Зарегистрироваться</button></Link>
+                <button type="submit" className="register__link" >Зарегистрироваться</button>
                 </div>
-                <div className="register__submit">Уже зарегистрированы? <Link to="/signin" style={{ textDecoration: 'none' }}><div className="register__submit_type_blau">Войти</div></Link></div>
+                <div className="register__submit">Уже зарегистрированы? <div className="register__submit_type_blau">Войти</div></div>
             </form>
         </div>
     </div>

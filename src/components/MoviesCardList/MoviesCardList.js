@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard"
 
-function MoviesCardList({cards, deleteMovies, notMovies}) {
+function MoviesCardList({cards, deleteMovies, notMovies, onCardLike}) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [countMoreCards, setCountMoreCards] = useState(window.innerWidth);
   const [currentCards, setCurrentCards] = useState([]);
@@ -49,7 +49,7 @@ function MoviesCardList({cards, deleteMovies, notMovies}) {
        <div className="movieslist">
         <div className="movieslist-container">
               {currentCards.map((card, i) => (
-                    <MoviesCard  key={i} card={card} deleteMovies={deleteMovies} />
+                    <MoviesCard  key={i} card={card} deleteMovies={deleteMovies} onCardLike={onCardLike}/>
                 ))}
         </div>
       {currentCards.length<cards.length ? 
