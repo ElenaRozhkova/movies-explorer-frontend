@@ -10,27 +10,31 @@ function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}
     useEffect(()=>{
         if ((savedCardsId)&&(savedCardsId.includes(card.movieId))) 
             {setIsSaved(true);
-            setIsLikedColor("card__vector-like card__vector-liked");  
-            console.log("hallo");}
+            setIsLikedColor("card__vector-like card__vector-liked"); 
+            }
         else {setIsSaved(false);
             setIsLikedColor("card__vector-like");
         }
-    }, [card,savedCardsId])
+    }, [card])
    
 
     function handleSaveClick() {
         if (isSaved) {
             onCardDelete(card); 
-            console.log("delete");
+            setIsLikedColor("");
             setIsLikedColor("card__vector-like");
+            setIsSaved(!isSaved);
         } else {onCardLike(card); 
-            console.log("create");
             setIsLikedColor("card__vector-like card__vector-liked");
+            setIsSaved(!isSaved);
         };
       }
 
     const handleDeleteClick =()=>{
         onCardDelete(card);
+        /*setIsSaved(!isSaved);
+        setIsLikedColor("");
+        setIsLikedColor("card__vector-like");*/
     }  
 
     return (       

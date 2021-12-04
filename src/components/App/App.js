@@ -102,7 +102,6 @@ function App() {
        .then((saveMovie)=>{
          setSaveCards([...saveCards, {...saveMovie}]);
          setSavedCardsId([...savedCardsId, saveMovie.movieId]);
-         console.log(savedCardsId);
        })
        .catch((err) => {
         console.log(err);
@@ -110,13 +109,17 @@ function App() {
     }
 
     const handleCardDelete=(movie)=>{
-      const movieDeleteId = saveCards.filter(v => v.movieId===movie.movieId);
-      api.deleteMovie(movieDeleteId[0]._id)
+      let movieDelete={};
+      if (!movie._id) {
+      const movienew = saveCards.filter(v => v.movieId===movie.movieId);
+            movieDelete=movienew[0];
+      }
+      else movieDelete=movie;
+      api.deleteMovie(movieDelete._id)
        .then((deleteMovie)=>{
-         console.log(deleteMovie);
           // Формируем новый массив на основе имеющегося, удаляя из него карточку card._id
           const newSaveMovies = saveCards.filter(function (c) {
-            return c._id !== movie._id;
+            return c._id !== deleteMovie._id;
            });
           const filteredMoviesIds = savedCardsId.filter(function (id) {
             return id !== deleteMovie.movieId;
