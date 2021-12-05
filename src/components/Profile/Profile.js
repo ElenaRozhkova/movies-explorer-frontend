@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import './Profile.css';
 
-function Profile() {
+function Profile({ onSignOut }) {
     const [name, setName] =React.useState("Виталий");
     const [email, setEmail] =React.useState("pochta@yandex.ru");
     const [validName, setValidName] =React.useState(false);
@@ -42,7 +42,7 @@ function Profile() {
                 {validEmail ?  <div className="profile__error">Что-то пошло не так...</div> :""}
             </div>
         <div className="myprofile__update">Редактировать</div>
-        <Link to="/" style={{ textDecoration: 'none' }}><div className="myprofile__out">Выйти из аккаунта</div></Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><div className="myprofile__out" onClick={onSignOut}>Выйти из аккаунта</div></Link>
         </div>
     </div>
   );

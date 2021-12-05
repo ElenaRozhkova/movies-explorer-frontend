@@ -15,7 +15,7 @@ function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}
         else {setIsSaved(false);
             setIsLikedColor("card__vector-like");
         }
-    }, [card])
+    }, [card,savedCardsId])
    
 
     function handleSaveClick() {

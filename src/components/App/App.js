@@ -1,9 +1,9 @@
 import './App.css';
-import Main from '../Main/Main'
-import Footer from '../Footer/Footer'
-import SavedMovies from '../SavedMovies/SavedMovies'
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import React, {useEffect, useState} from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile'
 import Register from '../Register/Register'
@@ -14,6 +14,7 @@ import authApi from '../../utils/MainApi';
 import { createApiUser } from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 
@@ -38,8 +39,9 @@ function App() {
     Promise.all([moviesApi.getUser(), moviesApi.getMovies()])
         .then(([user, savemovies]) => {
             setCurrentUser(user);
-            setSaveCards(savemovies);
-            const savemovieId = savemovies.map((movie) => movie.movieId);
+            const mySaveMovies = savemovies.filter(e=>e.owner===user._id);
+            setSaveCards(mySaveMovies);
+            const savemovieId = mySaveMovies.map((movie) => movie.movieId);
             setSavedCardsId(savemovieId);
         })
         .catch((err) => {
@@ -199,13 +201,46 @@ function App() {
 const handleLogin=()=> {
   setLoggedIn(true);
 }
+
+const onSignOut =()=>{
+  localStorage.removeItem('jwt');
+  localStorage.removeItem('movies');
+  setLoggedIn(false);
+  history.push('/');
+}
+
   return (
     <div className="App">
         <CurrentUserContext.Provider value={currentUser} >
         <div className="root">
           <Switch>
-            <Route path="/movies" > 
-              <Movies cards={cards}
+                  
+            <Route path="/" exact>
+              <Main />
+              <Footer />
+            </Route>
+
+            <Route path="/signup">
+              {!loggedIn
+                ? <Register
+                  onRegister={onRegister}
+                />
+                : <Redirect to="/movies" />
+              }
+            </Route>
+
+            <Route path="/signin" > 
+            {!loggedIn
+              ? <Login
+                onLogin={onLogin}
+              /> : <Redirect to="/movies" />
+            }     
+            </Route>
+
+            <ProtectedRoute path="/movies" 
+                      cards={cards}
+                      loggedIn={loggedIn}
+                      component={Movies}
                       isSubmitting={isSubmitting}
                       searchQuery={searchQuery}
                       setSearchQuery={setSearchQuery}
@@ -213,43 +248,32 @@ const handleLogin=()=> {
                       notMovies={notMovies}
                       onCardLike={handleCardLike}
                       savedCardsId={savedCardsId} 
-                      onCardDelete={handleCardDelete}/> 
-              <Footer />       
-            </Route>
+                      onCardDelete={handleCardDelete}
+              />      
 
-            <Route path="/saved-movies" > 
-              <SavedMovies cards={saveCards}
+            <ProtectedRoute path="/saved-movies" 
+                      cards={saveCards}
+                      loggedIn={loggedIn}
+                      component={SavedMovies}
                       isSubmitting={isSubmitting}
                       searchQuery={searchQuery}
                       setSearchQuery={setSearchQuery}
                       handleSubmit={handleSubmit} 
                       notMovies={notMovies}
                       onCardDelete={handleCardDelete}
-                      savedCardsId={savedCardsId} /> 
-              <Footer />       
-            </Route>
+                      savedCardsId={savedCardsId}        
+            />
 
-            <Route path="/profile" > 
-              <Profile />        
-            </Route>
+            <ProtectedRoute path="/profile"  
+                      loggedIn={loggedIn}
+                      component={Profile}
+                      onSignOut={onSignOut}      
+            />
 
-            <Route path="/signup" > 
-              <Register onRegister={onRegister} />        
-            </Route>
-
-            <Route path="/signin" > 
-              <Login onLogin={onLogin}/>        
-            </Route>
-          
-            <Route path="/" exact>
-              <Main />
-              <Footer />
-            </Route>
 
             <Route path="*">
                 <NotFound />
               </Route>
-
             </Switch>
             <InfoTooltip isOpen={isInfoTooltipOpen}
                             onClose={closePopupNew}

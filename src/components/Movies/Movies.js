@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Navigation from './../Navigation/Navigation';
 import Preloader from '../Preloader/Preloader';
 
-function Movies( {setSearchQuery, searchQuery, handleSubmit, isSubmitting, cards, notMovies, onCardLike, savedCardsId, onCardDelete} ) {
+function Movies( {setSearchQuery, searchQuery, handleSubmit, isSubmitting, cards, saveCards, notMovies, onCardLike, savedCardsId, onCardDelete} ) {
   const [openForm, setOpenForm] = useState(false);
   const [deleteMovies, setDeleteMovies] = useState(false);
   
@@ -18,7 +18,7 @@ function Movies( {setSearchQuery, searchQuery, handleSubmit, isSubmitting, cards
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
      <Navigation setOnForm={ setOnForm }/>             
      <SearchForm handleChange={setSearchQuery} value={searchQuery} handleClick={handleSubmit}/>
-     {isSubmitting ? <Preloader /> : <MoviesCardList cards={cards} deleteMovies={deleteMovies} notMovies={notMovies} onCardLike={onCardLike} savedCardsId={savedCardsId} onCardDelete={onCardDelete} />}
+     {isSubmitting ? <Preloader /> : <MoviesCardList cards={cards} saveCards={saveCards} deleteMovies={deleteMovies} notMovies={notMovies} onCardLike={onCardLike} savedCardsId={savedCardsId} onCardDelete={onCardDelete} />}
     </div>
   );
 }
