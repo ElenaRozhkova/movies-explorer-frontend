@@ -19,6 +19,18 @@ class Api {
             .then(res => this._getResponseData(res));
     }
 
+    updateUserInfo(name, email) {
+      return fetch(`${this._url}/users/me`, {
+              method: 'PATCH',
+              headers: this._headers,
+              body: JSON.stringify({
+                  name: name,
+                  email: email
+              })
+          })
+          .then(res => this._getResponseData(res));
+     }
+
     getMovies() {
       return fetch(`${this._url}/movies`, {
               headers: this._headers
@@ -54,7 +66,8 @@ class Api {
         headers: this._headers
     })
     .then(res => this._getResponseData(res))
-}
+    }
+
 
   register = (email, password, name) => {
         return fetch(`${this._url}/signup`, {

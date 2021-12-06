@@ -79,6 +79,11 @@ function App() {
     }
 
   }, [isSubmitting, searchQuery])
+
+  React.useEffect(() => {
+    tokenCheck()
+}, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -117,6 +122,7 @@ function App() {
             movieDelete=movienew[0];
       }
       else movieDelete=movie;
+      console.log(movieDelete._id);
       api.deleteMovie(movieDelete._id)
        .then((deleteMovie)=>{
           // Формируем новый массив на основе имеющегося, удаляя из него карточку card._id
@@ -126,14 +132,25 @@ function App() {
           const filteredMoviesIds = savedCardsId.filter(function (id) {
             return id !== deleteMovie.movieId;
           });
-        // Обновляем стейт
         setSaveCards(newSaveMovies);
         setSavedCardsId(filteredMoviesIds);
-        //setCards(newMovies);
        })
        .catch((err) => {
         console.log(err);
          });
+    }
+
+    const updateProfileDaten=({name, email})=>{
+      api.updateUserInfo(name, email)
+      .then ((res)=>{
+        setCurrentUser(res);
+        setText("Вы успешно редактировали Ваш аккаунт!");
+        handleLoginClick(true);
+      })
+      .catch((err) => {
+        setText("Что-то пошло не так! Попробуйте ещё раз.");
+        handleLoginClick(true);
+    })
     }
 
     const handleLoginClick=(value)=> {
@@ -172,15 +189,11 @@ function App() {
 }
 
   const tokenCheck =() =>{
-    // если у пользователя есть токен в localStorage,
-    // эта функция проверит валидность токена
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-        // проверим токен
         authApi.getContent(jwt)
         .then((res) => {
             if (res) {
-                // авторизуем пользователя
                 setLoggedIn(true);
                 updateProfile(jwt);
                 history.push("/movies");
@@ -191,10 +204,6 @@ function App() {
         })
     }
   }
-
-  React.useEffect(() => {
-    tokenCheck()
-}, []);
 
   const closePopupNew=()=> {
     setIsInfoTooltipOpen(false);
@@ -212,14 +221,14 @@ const onSignOut =()=>{
   history.push('/');
 }
 
+
   return (
     <div className="App">
         <CurrentUserContext.Provider value={currentUser} >
         <div className="root">
-          <Switch>
-                  
+          <Switch>                  
             <Route path="/" exact>
-              <Main />
+              <Main loggedIn={loggedIn} />
               <Footer />
             </Route>
 
@@ -258,11 +267,8 @@ const onSignOut =()=>{
                       cards={saveCards}
                       loggedIn={loggedIn}
                       component={SavedMovies}
-                      isSubmitting={isSubmitting}
                       searchQuery={searchQuery}
                       setSearchQuery={setSearchQuery}
-                      handleSubmit={handleSubmit} 
-                      notMovies={notMovies}
                       onCardDelete={handleCardDelete}
                       savedCardsId={savedCardsId}        
             />
@@ -270,7 +276,8 @@ const onSignOut =()=>{
             <ProtectedRoute path="/profile"  
                       loggedIn={loggedIn}
                       component={Profile}
-                      onSignOut={onSignOut}      
+                      onSignOut={onSignOut} 
+                      updateProfileDaten={updateProfileDaten}     
             />
 
 

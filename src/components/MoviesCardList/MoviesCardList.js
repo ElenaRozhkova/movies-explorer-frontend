@@ -9,7 +9,6 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike, onCardDelet
 
   const location = window.location.pathname;
   let timeout = null;
-
   const changeWindowsWidth=()=>{
     if (timeout) {clearTimeout(timeout);}
     timeout = setTimeout(() => 
@@ -40,14 +39,14 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike, onCardDelet
         setCountMoreCards(4);
       }
     } 
-  }, [windowWidth,cards.length,location]);
+  }, [windowWidth,cards,location]);
 
     return (
         <>
       {notMovies ? <div className="movieserror">{notMovies}</div> : 
        <div className="movieslist">
         <div className="movieslist-container">
-              {currentCards.map((card, i) => (
+              { currentCards.map((card, i) => (
                     <MoviesCard  key={i} card={card} deleteMovies={deleteMovies} onCardLike={onCardLike} onCardDelete={onCardDelete} savedCardsId={savedCardsId}/>
                 ))}
         </div>

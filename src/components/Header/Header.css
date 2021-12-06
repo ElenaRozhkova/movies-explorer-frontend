@@ -12,6 +12,7 @@
 .mainlogo {
     width: 38px;
     cursor: pointer;
+    padding-left: 10px;
 }
 
 .menu__header {

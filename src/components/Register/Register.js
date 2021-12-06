@@ -29,7 +29,8 @@ function Register({onRegister}) {
                 >
                 <div className="register__conteiner">
                     <label className="register__subtitle"> Имя </label>
-                    <input className={`register__input ${errors.name ? "register__input_type_error":""}`}  value={values.name || ""} onChange={handleChange}  
+                    <input className={`register__input ${errors.name ? "register__input_type_error":""}`}  value={values.name || ""} 
+                            onChange={handleChange}  
                             type="text" required id="Name" name="name" placeholder="Виталий" 
                             minLength={2} maxLength={30}
                             pattern="^[a-zA-Zа-яА-ЯЁё\s\-]+$"/>
@@ -42,8 +43,10 @@ function Register({onRegister}) {
                     <div className="register__error">{errors.email}</div> 
 
                     <label className="register__subtitle"> Пароль </label>
-                    <input className={`register__input ${errors.password ? "register__input_type_error":""}`} value={values.password || ""} onChange={handleChange} 
+                    <input className={`register__input ${errors.password ? "register__input_type_error":""}`} value={values.password || ""} 
+                            onChange={handleChange} 
                             type="password" required id="password" name="password" 
+                            minLength={6}
                             placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
                     <div className="register__error register__last-error">{errors.password}</div>
                 </div>           

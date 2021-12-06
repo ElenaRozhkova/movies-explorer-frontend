@@ -37,6 +37,7 @@ function Login({onLogin}) {
                     <label className="login__subtitle"> Пароль </label>
                     <input className={`login__input ${errors.password ? "login__input_type_error":""}`} value={values.password || ""} onChange={handleChange} 
                             type="password" required id="password" name="password" 
+                            minLength={6}
                             placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
                     <div className="login__error login__last-error">{errors.password}</div>
                 </div>           

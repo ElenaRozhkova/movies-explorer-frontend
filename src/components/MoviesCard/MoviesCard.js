@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import './MoviesCard.css';
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}) {
     const [isSaved, setIsSaved]=React.useState('false');
     const [isLikedColor, setIsLikedColor]=React.useState("card__vector-like");
-    const currentUser = React.useContext(CurrentUserContext);
 
     useEffect(()=>{
         if ((savedCardsId)&&(savedCardsId.includes(card.movieId))) 
@@ -16,7 +14,6 @@ function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}
             setIsLikedColor("card__vector-like");
         }
     }, [card,savedCardsId])
-   
 
     function handleSaveClick() {
         if (isSaved) {
