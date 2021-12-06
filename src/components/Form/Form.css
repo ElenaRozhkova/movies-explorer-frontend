@@ -1,0 +1,67 @@
+.button__link-disabled {
+    background: #8B8B8B;
+    pointer-events: none;
+    user-select: none;
+}
+
+.button__link-notdisabled {
+    cursor: pointer;
+    background: #3456F3;
+}
+
+.container__form {
+    padding-top: 80px;
+}
+
+.button-container{
+    margin-top: 69px;
+    border-radius: 3px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container:hover {
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.button__link {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.label-text {
+    padding-top: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #A0A0A0;
+}
+.label-text_type_blau {
+    display: inline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #3456F3;
+    padding-right: 6px;
+    cursor: pointer;
+}
+
+.label-text_type_blau:hover {
+    opacity: 0.9;
+    transition: 0.2s;
+}

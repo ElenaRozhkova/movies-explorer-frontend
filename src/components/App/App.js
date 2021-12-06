@@ -145,10 +145,12 @@ function App() {
               if (res) {
                 setText("Вы успешно зарегистрировались!");
                 handleLoginClick(true);
+                history.push('/signin');
               }
           })
           .catch((err) => {
                 setText("Что-то пошло не так! Попробуйте ещё раз.");
+                history.push('/signup');
                 handleLoginClick(true);
           })
   }
@@ -165,7 +167,8 @@ function App() {
               history.push('/movies'); // и переадресуем пользователя! 
           }
       })
-    .catch(err => {console.log(err)});
+    .catch(err => {
+      console.log(err)});
 }
 
   const tokenCheck =() =>{
