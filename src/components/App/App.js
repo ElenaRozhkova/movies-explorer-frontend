@@ -122,7 +122,6 @@ function App() {
             movieDelete=movienew[0];
       }
       else movieDelete=movie;
-      console.log(movieDelete._id);
       api.deleteMovie(movieDelete._id)
        .then((deleteMovie)=>{
           // Формируем новый массив на основе имеющегося, удаляя из него карточку card._id
@@ -267,8 +266,6 @@ const onSignOut =()=>{
                       cards={saveCards}
                       loggedIn={loggedIn}
                       component={SavedMovies}
-                      searchQuery={searchQuery}
-                      setSearchQuery={setSearchQuery}
                       onCardDelete={handleCardDelete}
                       savedCardsId={savedCardsId}        
             />

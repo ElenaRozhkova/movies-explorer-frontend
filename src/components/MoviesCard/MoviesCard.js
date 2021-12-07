@@ -29,15 +29,16 @@ function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}
 
     const handleDeleteClick =()=>{
         onCardDelete(card);
-        /*setIsSaved(!isSaved);
-        setIsLikedColor("");
-        setIsLikedColor("card__vector-like");*/
-    }  
+    } 
+    
+    const handleClick = () => {
+        window.open(card.trailer);
+      };
 
     return (       
         <article className="card" id={card._id}>
             <div className="card__size">
-                <img className="card__image" src={card.image} alt={card.nameRU} />
+                <img className="card__image" src={card.image} alt={card.nameRU} onClick={handleClick} />
                 <div className="card__title-container">
                     <h2 className="card__title">{card.nameRU}</h2>
                     {deleteMovies ? 

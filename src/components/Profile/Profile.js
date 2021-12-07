@@ -9,14 +9,20 @@ function Profile({ onSignOut, updateProfileDaten }) {
     const {values, handleChange, errors, isValid, resetForm}=useFormWithValidation();
     const [openForm, setOpenForm] = useState(false);
     const currentUser = React.useContext(CurrentUserContext);
+    const updateDaten = { name: currentUser.name, email: currentUser.email };
+
     const setOnForm=(value)=>{
         setOpenForm(value);
         }
 
     const onSubmit=(e)=>{
         e.preventDefault();
-        updateProfileDaten({name : values.name, email: values.email});
-    }    
+        if(values.name) updateDaten.name=values.name;
+        if(values.email) updateDaten.email=values.email;
+        console.log({name : updateDaten.name, email: updateDaten.email});
+        updateProfileDaten({name : updateDaten.name, email: updateDaten.email});
+    } 
+       
    return (
     <div className={`profile ${openForm ? "profile_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm }/>               
@@ -37,7 +43,8 @@ function Profile({ onSignOut, updateProfileDaten }) {
                 <div className="myprofile__elements">
                     <div className="myprofile__element">E-mail</div>
                     <input type="email" className="myprofile__element" value={values.email || currentUser.email} required
-                     onChange={handleChange} placeholder="pochta@yandex.ru" 
+                     onChange={handleChange} placeholder="pochta@yandex.ru"
+                     pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$" 
                      minLength={6} name="email"
                      />
                 </div>
