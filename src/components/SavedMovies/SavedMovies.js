@@ -12,7 +12,6 @@ function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked} ) {
   const [saveMovies, setSaveMovies] = useState(cards);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [saveMoviesChecked, setSaveMoviesChecked] = useState(false);
   
   let deleteMovies=true;
   const setOnForm=(value)=>{
@@ -24,55 +23,33 @@ function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked} ) {
   }, [cards])
 
   React.useEffect(() => {
-    if (searchQuery===""){
-    if(saveMoviesChecked){
-      const filtermovies = cards.filter(v => v.duration<=40);
-      setSaveMovies(filtermovies);
-     }
-     else { 
-      setSaveMovies(cards);}}
-}, [saveMoviesChecked])
-
-  React.useEffect(() => {
     if (isSubmitting) {
-
       const saveCard = cards.filter(v => v.nameRU.includes(searchQuery) && searchQuery!=="")
       setNotMovies('');
-      console.log(saveCard);
-      if(saveMoviesChecked){
-        const filtermovies = saveCard.filter(v => v.duration<=40);
-        setSaveMovies(filtermovies);
-        if (filtermovies.length === 0) {
-          setNotMovies('Ничего не найдено');
-          setIsSubmitting(false);
-         } 
-       }
-       else { 
-        setSaveMovies(saveCard);}
-       if (saveCard.length === 0) {
+      setSaveMovies(saveCard);
+      if (saveCard.length === 0) {
         setNotMovies('Ничего не найдено');
         setIsSubmitting(false);
-       } 
-       else{
+      } 
+      else{
         localStorage.setItem('savemovies', JSON.stringify(saveMovies));
-       }
+      }
       setIsSubmitting(false);
     }
-  }, [isSubmitting, searchQuery, saveMoviesChecked])
-
+  }, [isSubmitting, searchQuery])
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsSubmitting(true);
   }
 
-  const handleSaveChecked=(param)=>{
-    setSaveMoviesChecked(param);
-  }
+
    return (
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm } />               
-        <SearchForm handleChange={setSearchQuery} value={searchQuery} handleClick={handleSubmit} handleChecked={handleSaveChecked}/>
+        <SearchForm handleChange={setSearchQuery} 
+        value={searchQuery} handleClick={handleSubmit} 
+        handleChecked={handleChecked}/>
         {isSubmitting ? <Preloader /> : 
         <MoviesCardList 
           cards={saveMovies} 

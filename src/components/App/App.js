@@ -68,14 +68,9 @@ function App() {
               localStorage.setItem('movies', JSON.stringify(movies));
             } 
             setIsSubmitting(false);
-            if(moviesChecked){
-             const filtermovies = movies.filter(v => v.duration<=40);
-             createCards(filtermovies);
-            }
-            else {createCards(movies); }
+            createCards(movies); 
           })
           .catch((err)=>{
-            console.log(err);
             setIsSubmitting(false)
             setNotMovies(`Во время запроса произошла ошибка. Возможно, 
             проблема с соединением или сервер недоступен. 
@@ -146,6 +141,14 @@ function App() {
 
     const handleChecked=(param)=>{
       setMoviesChecked(param);
+    }
+
+    const filterMovies=(arr)=> {
+      if (arr.length !== 0 || arr !== "undefind") {
+        return arr.filter((movie) =>
+          moviesChecked ? movie.duration <= 40 : true
+        );
+      }
     }
 
     const updateProfileDaten=({name, email})=>{
@@ -258,7 +261,7 @@ const onSignOut =()=>{
             </Route>
 
             <ProtectedRoute path="/movies" 
-                      cards={cards}
+                      cards={filterMovies(cards)}
                       loggedIn={loggedIn}
                       component={Movies}
                       isSubmitting={isSubmitting}
@@ -274,10 +277,11 @@ const onSignOut =()=>{
               />      
 
             <ProtectedRoute path="/saved-movies" 
-                      cards={saveCards}
+                      cards={filterMovies(saveCards)}
                       loggedIn={loggedIn}
                       component={SavedMovies}
                       onCardDelete={handleCardDelete}
+                      handleChecked={handleChecked}
                       savedCardsId={savedCardsId}      
             />
 
