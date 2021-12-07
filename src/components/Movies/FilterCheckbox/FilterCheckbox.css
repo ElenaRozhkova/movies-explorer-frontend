@@ -26,7 +26,7 @@
    }
    
    .checkbox__filter {
-      background-color: #2BE080;
+      background-color: #8B8B8B;
       position: absolute;
       width: 36px;
       height: 20px;
@@ -46,13 +46,13 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background-color: #F5F5F5;
+      background-color: #FFFFFF;
       transition: 0.1s linear 0.1s;
       transform: translateX(16px);
    }
    
    .checkbox__input:checked ~ .checkbox__filter {
-    background-color: #EBEBEB;
+    background-color: #2BE080;
    }
    
    .checkbox__input:checked ~ .checkbox__filter:after {

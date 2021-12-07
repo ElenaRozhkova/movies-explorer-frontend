@@ -31,6 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [api, setApi] = React.useState({});
   const [savedCardsId, setSavedCardsId] = React.useState([]);
+  const [moviesChecked, setMoviesChecked] = useState(false); 
   
  
   const updateProfile = (token) => {
@@ -65,9 +66,13 @@ function App() {
             if (movies.length === 0) {setNotMovies('Ничего не найдено');} 
             else{
               localStorage.setItem('movies', JSON.stringify(movies));
-            }
+            } 
             setIsSubmitting(false);
-            createCards(movies);
+            if(moviesChecked){
+             const filtermovies = movies.filter(v => v.duration<=40);
+             createCards(filtermovies);
+            }
+            else {createCards(movies); }
           })
           .catch((err)=>{
             console.log(err);
@@ -78,11 +83,11 @@ function App() {
           })
     }
 
-  }, [isSubmitting, searchQuery])
+  }, [isSubmitting, searchQuery, moviesChecked])
 
-  React.useEffect(() => {
+  useEffect(() => {
     tokenCheck()
-}, []);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -137,6 +142,10 @@ function App() {
        .catch((err) => {
         console.log(err);
          });
+    }
+
+    const handleChecked=(param)=>{
+      setMoviesChecked(param);
     }
 
     const updateProfileDaten=({name, email})=>{
@@ -260,6 +269,8 @@ const onSignOut =()=>{
                       onCardLike={handleCardLike}
                       savedCardsId={savedCardsId} 
                       onCardDelete={handleCardDelete}
+                      handleChecked={handleChecked}
+                      moviesChecked={moviesChecked}
               />      
 
             <ProtectedRoute path="/saved-movies" 
@@ -267,7 +278,7 @@ const onSignOut =()=>{
                       loggedIn={loggedIn}
                       component={SavedMovies}
                       onCardDelete={handleCardDelete}
-                      savedCardsId={savedCardsId}        
+                      savedCardsId={savedCardsId}      
             />
 
             <ProtectedRoute path="/profile"  

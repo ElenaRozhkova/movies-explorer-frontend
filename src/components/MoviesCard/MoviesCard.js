@@ -4,8 +4,10 @@ import './MoviesCard.css';
 function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}) {
     const [isSaved, setIsSaved]=React.useState('false');
     const [isLikedColor, setIsLikedColor]=React.useState("card__vector-like");
-
-    useEffect(()=>{
+    const hours = Math.floor(card.duration / 60);  
+    const minutes = card.duration % 60;
+    const duration = hours ? `${hours} ч ${minutes} мин`: `${minutes} мин`;
+     useEffect(()=>{
         if ((savedCardsId)&&(savedCardsId.includes(card.movieId))) 
             {setIsSaved(true);
             setIsLikedColor("card__vector-like card__vector-liked"); 
@@ -47,7 +49,7 @@ function MoviesCard({card, deleteMovies, onCardLike, onCardDelete, savedCardsId}
                     }
                     </div>
             </div>
-            <div className="card__duration" > {card.duration}</div>
+            <div className="card__duration" > {duration}</div>
          </article>
     )
 }

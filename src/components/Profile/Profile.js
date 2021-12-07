@@ -19,8 +19,8 @@ function Profile({ onSignOut, updateProfileDaten }) {
         e.preventDefault();
         if(values.name) updateDaten.name=values.name;
         if(values.email) updateDaten.email=values.email;
-        console.log({name : updateDaten.name, email: updateDaten.email});
         updateProfileDaten({name : updateDaten.name, email: updateDaten.email});
+        resetForm();
     } 
        
    return (
