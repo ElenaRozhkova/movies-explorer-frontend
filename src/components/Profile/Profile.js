@@ -11,8 +11,8 @@ function Profile({ onSignOut, updateProfileDaten }) {
     const currentUser = React.useContext(CurrentUserContext);
     const updateDaten = { name: currentUser.name, email: currentUser.email };
 
-    const changeUser = isValid && (values.name!==currentUser.name || values.email!==currentUser.email);
-
+    const changeUser = isValid && (values.name!==currentUser.name && values.email!==currentUser.email);
+    console.log(changeUser);
     const setOnForm=(value)=>{
         setOpenForm(value);
         }
