@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fc7fd235.chunk.css",
+    "main.js": "/static/js/main.1fc64119.chunk.js",
+    "main.js.map": "/static/js/main.1fc64119.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.92e200c7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.92e200c7.js.map",
+    "static/js/2.21b0624a.chunk.js": "/static/js/2.21b0624a.chunk.js",
+    "static/js/2.21b0624a.chunk.js.map": "/static/js/2.21b0624a.chunk.js.map",
+    "static/js/3.17033dbf.chunk.js": "/static/js/3.17033dbf.chunk.js",
+    "static/js/3.17033dbf.chunk.js.map": "/static/js/3.17033dbf.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.fc7fd235.chunk.css.map": "/static/css/main.fc7fd235.chunk.css.map",
+    "static/js/2.21b0624a.chunk.js.LICENSE.txt": "/static/js/2.21b0624a.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Inter-Regular.e148c4a1.woff",
+    "static/media/NavForm.css": "/static/media/account.dda9fc57.svg",
+    "static/media/close.5a52daa7.svg": "/static/media/close.5a52daa7.svg",
+    "static/media/MoviesCard.css": "/static/media/like_white.ddd3d4b4.svg",
+    "static/media/logo__COLOR_main-1.bca2ab18.svg": "/static/media/logo__COLOR_main-1.bca2ab18.svg",
+    "static/media/menu.65534bf2.svg": "/static/media/menu.65534bf2.svg",
+    "static/media/myphoto.3e1e1638.jpg": "/static/media/myphoto.3e1e1638.jpg",
+    "static/media/pfeil.1c63a7f5.svg": "/static/media/pfeil.1c63a7f5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92e200c7.js",
+    "static/js/2.21b0624a.chunk.js",
+    "static/css/main.fc7fd235.chunk.css",
+    "static/js/main.1fc64119.chunk.js"
+  ]
+}
