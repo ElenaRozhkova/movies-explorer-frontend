@@ -116,6 +116,7 @@
     }
 
     .myprofile__link-disabled {
+        color: #C4C4C4;
         pointer-events: none;
         user-select: none;
     }

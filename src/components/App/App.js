@@ -15,7 +15,7 @@ import { createApiUser } from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
+import { CHORTMOVIE } from '../../utils/constants';
 
 
 function App() {
@@ -53,6 +53,8 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('movies')) {
     const movies=JSON.parse(localStorage.getItem('movies'));
+    const checked=localStorage.getItem('checked');
+    setMoviesChecked(checked);
     createCards(movies);
   }
   }, [])
@@ -62,10 +64,12 @@ function App() {
       moviesApi.search()
           .then(data => {
             setNotMovies('');
-            const movies = data.filter(v => v.nameRU.includes(searchQuery) && searchQuery!=="");
+            const key = new RegExp(searchQuery, "gi");
+            const movies = data.filter(v => key.test(v.nameRU) || key.test(v.nameEN));
             if (movies.length === 0) {setNotMovies('Ничего не найдено');} 
             else{
               localStorage.setItem('movies', JSON.stringify(movies));
+              localStorage.setItem('checked', moviesChecked);
             } 
             setIsSubmitting(false);
             createCards(movies); 
@@ -91,19 +95,21 @@ function App() {
 
   const createCards =(movies)=>{
     setCards(movies.map(item => ({
-      country: item.country,
+      country: item.country ? item.country : 'notdefine',
       director: item.director,
       duration: item.duration,
       year: item.year,
       description: item.description,
       image: `https://api.nomoreparties.co${item.image.url}`,
       trailer: item.trailerLink,              
-      thumbnail: item.image.formats.thumbnail,
+      thumbnail: item.image.formats.thumbnail ? item.image.formats.thumbnail : 'notdefine',
       movieId:  item.id,
       nameRU: item.nameRU,              
-      nameEN: item.nameEN,
+      nameEN: item.nameEN ? item.nameEN : 'notdefine',
     })))
   }
+
+
     const handleCardLike=(movie)=>{
       api.createMovie(movie)
        .then((saveMovie)=>{
@@ -139,14 +145,14 @@ function App() {
          });
     }
 
-    const handleChecked=(param)=>{
-      setMoviesChecked(param);
+    const handleChecked=()=>{
+      setMoviesChecked(!moviesChecked);
     }
 
-    const filterMovies=(arr)=> {
-      if (arr.length !== 0 || arr !== "undefind") {
-        return arr.filter((movie) =>
-          moviesChecked ? movie.duration <= 40 : true
+    const filterMovies=(filtermovie)=> {
+      if (filtermovie.length !== 0 || filtermovie !== "undefind") {
+        return filtermovie.filter((movie)=>
+        moviesChecked ? movie.duration <= CHORTMOVIE : true
         );
       }
     }
@@ -173,7 +179,9 @@ function App() {
               if (res) {
                 setText("Вы успешно зарегистрировались!");
                 handleLoginClick(true);
-                history.push('/signin');
+                setLoggedIn(true);
+                onLogin(email, password);
+                history.push('/movies');
               }
           })
           .catch((err) => {
@@ -218,7 +226,7 @@ function App() {
 
   const closePopupNew=()=> {
     setIsInfoTooltipOpen(false);
-    history.push('/signin');
+    history.push('/movies');
 }
 
 const handleLogin=()=> {
@@ -244,12 +252,7 @@ const onSignOut =()=>{
             </Route>
 
             <Route path="/signup">
-              {!loggedIn
-                ? <Register
-                  onRegister={onRegister}
-                />
-                : <Redirect to="/movies" />
-              }
+              <Register onRegister={onRegister} />
             </Route>
 
             <Route path="/signin" > 
@@ -282,7 +285,8 @@ const onSignOut =()=>{
                       component={SavedMovies}
                       onCardDelete={handleCardDelete}
                       handleChecked={handleChecked}
-                      savedCardsId={savedCardsId}      
+                      savedCardsId={savedCardsId}
+                      moviesChecked={moviesChecked}      
             />
 
             <ProtectedRoute path="/profile"  

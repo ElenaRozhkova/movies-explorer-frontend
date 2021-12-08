@@ -15,12 +15,6 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike, onCardDelet
     setWindowWidth(window.innerWidth), 1290);
   };
 
-  /*console.log(moviesChecked);
-  useEffect(() => {
-     const filterCards= cards.filter(e=>e.duration<=40);
-     console.log(filterCards);
-  }, [moviesChecked==='true']);*/
-
   useEffect(() => {
     window.addEventListener('resize', changeWindowsWidth);
     return () => 

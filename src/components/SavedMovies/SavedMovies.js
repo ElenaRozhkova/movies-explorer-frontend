@@ -6,7 +6,7 @@ import Navigation from './../Navigation/Navigation';
 import Preloader from '../Preloader/Preloader';
 
 
-function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked} ) {
+function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked, moviesChecked} ) {
   const [openForm, setOpenForm] = useState(false);
   const [notMovies, setNotMovies] = useState('');
   const [saveMovies, setSaveMovies] = useState(cards);
@@ -24,7 +24,8 @@ function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked} ) {
 
   React.useEffect(() => {
     if (isSubmitting) {
-      const saveCard = cards.filter(v => v.nameRU.includes(searchQuery) && searchQuery!=="")
+      const key = new RegExp(searchQuery, "gi");
+      const saveCard = cards.filter(v => key.test(v.nameRU) || key.test(v.nameEN));
       setNotMovies('');
       setSaveMovies(saveCard);
       if (saveCard.length === 0) {
@@ -48,8 +49,8 @@ function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked} ) {
     <div className={`movies ${openForm ? "movies_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm } />               
         <SearchForm handleChange={setSearchQuery} 
-        value={searchQuery} handleClick={handleSubmit} 
-        handleChecked={handleChecked}/>
+                    value={searchQuery} handleClick={handleSubmit} 
+                    handleChecked={handleChecked} moviesChecked={moviesChecked}/>
         {isSubmitting ? <Preloader /> : 
         <MoviesCardList 
           cards={saveMovies} 

@@ -2,7 +2,7 @@ import React, {useState}  from 'react';
 import './SearchForm.css';
 import FilterCheckbox from './../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ handleChange, value, handleClick, handleChecked }) {
+function SearchForm({ handleChange, value, handleClick, handleChecked, moviesChecked}) {
   const [valid, setValid] = useState(false);
 
   const handleSearchClick =(event)=>{
@@ -23,7 +23,7 @@ function SearchForm({ handleChange, value, handleClick, handleChecked }) {
           <button className="search__input-img" onClick={handleSearchClick}>Найти</button>
         </form> 
         {valid ?  <div className="search__error">Нужно ввести ключевое слово</div> :""}
-        <FilterCheckbox handleChecked={handleChecked}/>
+        <FilterCheckbox handleChecked={handleChecked} moviesChecked={moviesChecked}/>
       </section>
     )
 }

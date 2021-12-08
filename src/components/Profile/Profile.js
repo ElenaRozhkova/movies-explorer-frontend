@@ -11,6 +11,8 @@ function Profile({ onSignOut, updateProfileDaten }) {
     const currentUser = React.useContext(CurrentUserContext);
     const updateDaten = { name: currentUser.name, email: currentUser.email };
 
+    const changeUser = isValid && (values.name!==currentUser.name || values.email!==currentUser.email);
+
     const setOnForm=(value)=>{
         setOpenForm(value);
         }
@@ -49,7 +51,7 @@ function Profile({ onSignOut, updateProfileDaten }) {
                      />
                 </div>
                 <div className="profile__error">{errors.email}</div> 
-                <button className={`myprofile__update ${!isValid ? "myprofile__link-disabled" : "myprofile__link-notdisabled"}`} disabled={!isValid}>Редактировать</button>
+                <button className={`myprofile__update ${!changeUser ? "myprofile__link-disabled" : "myprofile__link-notdisabled"}`} disabled={!isValid}>Редактировать</button>
             </form>
         <Link to="/" style={{ textDecoration: 'none' }}><div className="myprofile__out" onClick={onSignOut}>Выйти из аккаунта</div></Link>
         </div>
