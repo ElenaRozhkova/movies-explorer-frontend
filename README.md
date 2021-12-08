@@ -5,7 +5,7 @@
 `/controllers` — папка с файлами контроллеров пользователя и фильмов   
 `/models` — папка с файлами описания схем пользователя и фильмов 
 
-Публичный IP-адрес сервера :51.250.11.188
+Публичный IP-адрес сервера :51.250.15.214
 URL для frontend: https://movies-rozhkova.nomoredomains.rocks
 URL для backend: https://api.movies-rozhkova.nomoredomains.rocks
   
