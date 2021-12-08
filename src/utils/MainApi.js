@@ -112,13 +112,13 @@ class Api {
 
 const createApi = () => {
     return new Api({
-        url: "http://localhost:3001",
+        url: "https://api.movies-rozhkova.nomoredomains.rocks",
     });
 };
 
 export const createApiUser = (token) => {
     return new Api({
-        url: "http://localhost:3001",
+        url: "https://api.movies-rozhkova.nomoredomains.rocks",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
