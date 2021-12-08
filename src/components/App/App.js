@@ -31,7 +31,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [api, setApi] = React.useState({});
   const [savedCardsId, setSavedCardsId] = React.useState([]);
-  const [moviesChecked, setMoviesChecked] = useState(false); 
+  const [moviesChecked, setMoviesChecked] = useState(false);
+  const [savemoviesChecked, setSaveMoviesChecked] = useState(false);
   
  
   const updateProfile = (token) => {
@@ -149,10 +150,22 @@ function App() {
       setMoviesChecked(!moviesChecked);
     }
 
+    const handleSaveChecked=()=>{
+      setSaveMoviesChecked(!savemoviesChecked);
+    }
+
     const filterMovies=(filtermovie)=> {
       if (filtermovie.length !== 0 || filtermovie !== "undefind") {
         return filtermovie.filter((movie)=>
         moviesChecked ? movie.duration <= CHORTMOVIE : true
+        );
+      }
+    }
+
+    const filterSaveMovies=(filtermovie)=> {
+      if (filtermovie.length !== 0 || filtermovie !== "undefind") {
+        return filtermovie.filter((movie)=>
+        savemoviesChecked ? movie.duration <= CHORTMOVIE : true
         );
       }
     }
@@ -280,13 +293,12 @@ const onSignOut =()=>{
               />      
 
             <ProtectedRoute path="/saved-movies" 
-                      cards={filterMovies(saveCards)}
+                      cards={filterSaveMovies(saveCards)}
                       loggedIn={loggedIn}
                       component={SavedMovies}
                       onCardDelete={handleCardDelete}
-                      handleChecked={handleChecked}
-                      savedCardsId={savedCardsId}
-                      moviesChecked={moviesChecked}      
+                      handleChecked={handleSaveChecked}
+                      savedCardsId={savedCardsId}    
             />
 
             <ProtectedRoute path="/profile"  
