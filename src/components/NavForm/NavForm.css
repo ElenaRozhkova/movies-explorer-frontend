@@ -85,7 +85,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 320px) {  
+@media screen and (max-width: 400px) {  
 
     .menu__item {
         font-size: 10px;
@@ -99,6 +99,6 @@
         margin-bottom: 48px;
     }
     .menu__button-movies_type_mobile {
-        margin-top: 300px;
+        margin-top: 200px;
     }
   }
