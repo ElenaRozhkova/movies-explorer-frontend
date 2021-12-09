@@ -53,7 +53,7 @@ function MoviesCardList({cards, deleteMovies, notMovies, onCardLike, onCardDelet
         </div>
       {currentCards.length<cards.length ? 
         <div className="movieslist__more">
-          <button className="movieslist__button" onClick={addCards}>Ещё</button>
+          <button className="movieslist__button" onClick={addCards}>More</button>
         </div> 
         : ''}     
       </div> }

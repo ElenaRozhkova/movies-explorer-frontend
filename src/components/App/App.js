@@ -22,6 +22,7 @@ function App() {
   const history = useHistory();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cards, setCards] = useState([]);
+  const [allCards, setAllCards] = useState([]);
   const [saveCards, setSaveCards] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
   const [notMovies, setNotMovies] = useState('');
@@ -51,6 +52,20 @@ function App() {
         });
 };
 
+
+useEffect(() => {
+  moviesApi.search()
+  .then((res)=>{
+    createCards(res);
+    setAllCards(res);
+  }) 
+  .catch((err)=>{
+    setIsSubmitting(false)
+    setNotMovies(`No connection to the server.
+    Please try again.`);
+  })
+  }, [])
+
   useEffect(() => {
     if (localStorage.getItem('movies')) {
     const movies=JSON.parse(localStorage.getItem('movies'));
@@ -62,25 +77,16 @@ function App() {
 
   useEffect(() => {
     if (isSubmitting) {
-      moviesApi.search()
-          .then(data => {
-            setNotMovies('');
-            const key = new RegExp(searchQuery, "gi");
-            const movies = data.filter(v => key.test(v.nameRU) || key.test(v.nameEN));
-            if (movies.length === 0) {setNotMovies('Ничего не найдено');} 
-            else{
-              localStorage.setItem('movies', JSON.stringify(movies));
-              localStorage.setItem('checked', moviesChecked);
-            } 
-            setIsSubmitting(false);
-            createCards(movies); 
-          })
-          .catch((err)=>{
-            setIsSubmitting(false)
-            setNotMovies(`Во время запроса произошла ошибка. Возможно, 
-            проблема с соединением или сервер недоступен. 
-            Подождите немного и попробуйте ещё раз.`);
-          })
+        setNotMovies('');
+        const key = new RegExp(searchQuery, "gi");
+        const movies = allCards.filter(v => key.test(v.nameRU) || key.test(v.nameEN));
+        if (movies.length === 0) {setNotMovies('Enter something for searching!');} 
+        else{
+          localStorage.setItem('movies', JSON.stringify(movies));
+          localStorage.setItem('checked', moviesChecked);
+          } 
+          setIsSubmitting(false);
+          createCards(movies); 
     }
 
   }, [isSubmitting, searchQuery, moviesChecked])
@@ -88,6 +94,8 @@ function App() {
   useEffect(() => {
     tokenCheck()
   }, []);
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -105,7 +113,7 @@ function App() {
       trailer: item.trailerLink,              
       thumbnail: item.image.formats.thumbnail ? item.image.formats.thumbnail : 'notdefine',
       movieId:  item.id,
-      nameRU: item.nameRU,              
+      nameRU: item.nameEN,              
       nameEN: item.nameEN ? item.nameEN : 'notdefine',
     })))
   }
@@ -131,7 +139,6 @@ function App() {
       else movieDelete=movie;
       api.deleteMovie(movieDelete._id)
        .then((deleteMovie)=>{
-          // Формируем новый массив на основе имеющегося, удаляя из него карточку card._id
           const newSaveMovies = saveCards.filter(function (c) {
             return c._id !== deleteMovie._id;
            });
@@ -174,11 +181,11 @@ function App() {
       api.updateUserInfo(name, email)
       .then ((res)=>{
         setCurrentUser(res);
-        setText("Вы успешно редактировали Ваш аккаунт!");
+        setText("Your profile data has been changed successfully!");
         handleLoginClick(true);
       })
       .catch((err) => {
-        setText("Что-то пошло не так! Попробуйте ещё раз.");
+        setText("Something went wrong! Please try again.");
         handleLoginClick(true);
     })
     }
@@ -190,7 +197,7 @@ function App() {
       authApi.register(email, password, name)
           .then((res) => {
               if (res) {
-                setText("Вы успешно зарегистрировались!");
+                setText("You have successfully registered!");
                 handleLoginClick(true);
                 setLoggedIn(true);
                 onLogin(email, password);
@@ -198,7 +205,7 @@ function App() {
               }
           })
           .catch((err) => {
-                setText("Что-то пошло не так! Попробуйте ещё раз.");
+                setText("Something went wrong! Please try again.");
                 history.push('/signup');
                 handleLoginClick(true);
           })
@@ -211,9 +218,9 @@ function App() {
               localStorage.setItem('jwt', data.token);
               email = '';
               password = '';
-              handleLogin(); // обновляем стейт внутри App.js
+              handleLogin(); 
               tokenCheck();
-              history.push('/movies'); // и переадресуем пользователя! 
+              history.push('/movies'); 
           }
       })
     .catch(err => {

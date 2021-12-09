@@ -12,7 +12,6 @@ function Profile({ onSignOut, updateProfileDaten }) {
     const updateDaten = { name: currentUser.name, email: currentUser.email };
 
     const changeUser = isValid && (values.name!==currentUser.name && values.email!==currentUser.email);
-    console.log(changeUser);
     const setOnForm=(value)=>{
         setOpenForm(value);
         }
@@ -29,13 +28,13 @@ function Profile({ onSignOut, updateProfileDaten }) {
     <div className={`profile ${openForm ? "profile_type_dark":""}`} >
         <Navigation setOnForm={ setOnForm }/>               
         <div className="myprofile">
-            <div className="myprofile__title">Привет, {currentUser.name}!</div>
+            <div className="myprofile__title">Hello, {currentUser.name}!</div>
 
             <form className="myprofile__container" onSubmit={onSubmit}>
                 <div className="myprofile__elements">
-                    <div className="myprofile__element">Имя</div>
+                    <div className="myprofile__element">Name</div>
                     <input type="text" className="myprofile__element" name="name" value={values.name || currentUser.name} 
-                    onChange={handleChange} placeholder="Виталий" required
+                    onChange={handleChange} placeholder="Elena" required
                     minLength={2} maxLength={30}
                     pattern="^[a-zA-Zа-яА-ЯЁё\s\-]+$"
                     />
@@ -45,15 +44,15 @@ function Profile({ onSignOut, updateProfileDaten }) {
                 <div className="myprofile__elements">
                     <div className="myprofile__element">E-mail</div>
                     <input type="email" className="myprofile__element" value={values.email || currentUser.email} required
-                     onChange={handleChange} placeholder="pochta@yandex.ru"
+                     onChange={handleChange} placeholder="example@gmx.de"
                      pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$" 
                      minLength={6} name="email"
                      />
                 </div>
                 <div className="profile__error">{errors.email}</div> 
-                <button className={`myprofile__update ${!changeUser ? "myprofile__link-disabled" : "myprofile__link-notdisabled"}`} disabled={!isValid}>Редактировать</button>
+                <button className={`myprofile__update ${!changeUser ? "myprofile__link-disabled" : "myprofile__link-notdisabled"}`} disabled={!isValid}>Edit</button>
             </form>
-        <Link to="/" style={{ textDecoration: 'none' }}><div className="myprofile__out" onClick={onSignOut}>Выйти из аккаунта</div></Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><div className="myprofile__out" onClick={onSignOut}>Logout</div></Link>
         </div>
     </div>
   );

@@ -53,7 +53,7 @@ class Api {
                     thumbnail:movie.image,
                     owner:movie.owner,
                     movieId:movie.movieId,
-                    nameRU:movie.nameRU,
+                    nameRU:movie.nameEN,
                     nameEN:movie.nameEN
                 })
             })

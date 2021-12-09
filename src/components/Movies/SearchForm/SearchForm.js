@@ -17,12 +17,12 @@ function SearchForm({ handleChange, value, handleClick, handleChecked, moviesChe
     return (
       <section className="search-container">
         <form className="search">
-          <input type="text" className="search__input" placeholder="Фильм" required 
+          <input type="text" className="search__input" placeholder="Film" required 
               onChange={handleInputChange}
               value={value}/>
-          <button className="search__input-img" onClick={handleSearchClick}>Найти</button>
+          <button className="search__input-img" onClick={handleSearchClick}>Search</button>
         </form> 
-        {valid ?  <div className="search__error">Нужно ввести ключевое слово</div> :""}
+        {valid ?  <div className="search__error">Enter something for searching</div> :""}
         <FilterCheckbox handleChecked={handleChecked} moviesChecked={moviesChecked}/>
       </section>
     )

@@ -1,18 +1,14 @@
-# movies-explorer-api
-## Директории
+# Final project Movies-explorer (frontend - React/backend – Node.js)
+# Stack: HTML5, CSS, JavaScript, React, Webpack, API, Git, Node.js, MongoDB
+## Site for searching films with user registration / authorization.
 
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и фильмов   
-`/models` — папка с файлами описания схем пользователя и фильмов 
+Functionality:
+- registration and authorization
+After authorization:
+- movies search
+- adding/removing favorite movies (they are shown on the separate page)
+- changing user information
 
-Публичный IP-адрес сервера :51.250.15.214
-URL для frontend: https://movies-rozhkova.nomoredomains.rocks
-URL для backend: https://api.movies-rozhkova.nomoredomains.rocks
+Link: https://movies-rozhkova.nomoredomains.rocks
+
   
-
-## Запуск проекта
-
-`npm run start` — запускает сервер   
-`npm run dev` — запускает сервер с hot-reload
-
-

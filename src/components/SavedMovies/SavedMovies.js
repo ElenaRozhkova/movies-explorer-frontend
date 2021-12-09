@@ -29,7 +29,7 @@ function SavedMovies({ cards,  onCardDelete, savedCardsId, handleChecked, movies
       setNotMovies('');
       setSaveMovies(saveCard);
       if (saveCard.length === 0) {
-        setNotMovies('Ничего не найдено');
+        setNotMovies('Nothing saved');
         setIsSubmitting(false);
       } 
       else{

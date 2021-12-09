@@ -19,9 +19,9 @@ function Main({loggedIn}) {
            <Header>
             <img src={logo} alt="" className="mainlogo" />
             <nav className="menu__header">
-                <Link to="/signup" className="menu__item">Регистрация</Link>
+                <Link to="/signup" className="menu__item">Sign Up</Link>
                 <button className="menu__button">
-                    <Link to="/signin" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Войти</Link>
+                    <Link to="/signin" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Sign In</Link>
                 </button>
             </nav>
            </Header>

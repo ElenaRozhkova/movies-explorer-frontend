@@ -18,12 +18,12 @@ function Login({onLogin}) {
     <div className="login">
         <div className="login__container">
             <Link to="/"><img className="login__logo" src={logo} alt="logo" /></Link>
-            <p className="login__title">Рады видеть!</p>
+            <p className="login__title">Welcome back!</p>
             <Form  
                 onSubmit={handleSubmit} 
-                buttonText={"Войти"}
-                labelQuestion={"Ещё не зарегистрированы?"}
-                labelText={"Регистрация"}
+                buttonText={"Login"}
+                labelQuestion={"Don't have an account?"}
+                labelText={"Register"}
                 isValid={isValid}
                 path={"signup"}
                 >
@@ -31,7 +31,7 @@ function Login({onLogin}) {
                     <label className="login__subtitle"> E-mail </label>
                     <input className={`login__input ${errors.email ? "login__input_type_error":""}`} 
                             type="email" value={values.email || ""} onChange={handleChange}
-                            required id="Email" name="email" placeholder="pochta@yandex.ru" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
+                            required id="Email" name="email" placeholder="example@gmx.de" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
                     <div className="register__error">{errors.email}</div> 
 
                     <label className="login__subtitle"> Пароль </label>

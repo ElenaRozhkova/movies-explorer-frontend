@@ -4,9 +4,9 @@ function Techs() {
   return (
     <>
     <section className="techs" id="technologie">
-        <h3 className="techs__header">Технологии</h3>
-        <h2 className="techs__title">7 технологий</h2>
-        <p className="techs__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+        <h3 className="techs__header">Technologies</h3>
+        <h2 className="techs__title">7 technologies</h2>
+        <p className="techs__subtitle">During this frontend engineering course we learned the following technologies applied in the final project.</p>
        
         <ul className="techs__items">
             <li className="techs__item">HTML</li>

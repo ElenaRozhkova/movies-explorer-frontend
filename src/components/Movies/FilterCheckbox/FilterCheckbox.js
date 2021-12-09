@@ -11,7 +11,7 @@ function FilterCheckbox({ handleChecked, moviesChecked }) {
           className="checkbox__input" onClick={handleChecked} checked={moviesChecked} 
         />
         <span className="checkbox__filter"></span>
-        <label className="checkbox__label"> Короткометражки</label>
+        <label className="checkbox__label"> Short films</label>
       </label>
     </section>
   );

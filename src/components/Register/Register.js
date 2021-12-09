@@ -18,12 +18,12 @@ function Register({onRegister}) {
     <div className="register">
         <div className="register__container">
             <Link to="/"><img className="register__logo" src={logo} alt="logo" /></Link>
-            <p className="register__title">Добро пожаловать!</p>
+            <p className="register__title">Welcome!</p>
             <Form  
                 onSubmit={handleSubmit} 
-                buttonText={"Зарегистрироваться"}
-                labelQuestion={"Уже зарегистрированы?"}
-                labelText={"Войти"}
+                buttonText={"Register"}
+                labelQuestion={"Already have an account?"}
+                labelText={"Login"}
                 isValid={isValid}
                 path={"signin"}
                 >
@@ -31,7 +31,7 @@ function Register({onRegister}) {
                     <label className="register__subtitle"> Имя </label>
                     <input className={`register__input ${errors.name ? "register__input_type_error":""}`}  value={values.name || ""} 
                             onChange={handleChange}  
-                            type="text" required id="Name" name="name" placeholder="Виталий" 
+                            type="text" required id="Name" name="name" placeholder="Elena" 
                             minLength={2} maxLength={30}
                             pattern="^[a-zA-Zа-яА-ЯЁё\s\-]+$"/>
                     <div className="register__error">{errors.name}</div> 
@@ -39,7 +39,7 @@ function Register({onRegister}) {
                     <label className="register__subtitle"> E-mail </label>
                     <input className={`register__input ${errors.email ? "register__input_type_error":""}`} 
                             type="email" value={values.email || ""} onChange={handleChange}
-                            required id="Email" name="email" placeholder="pochta@yandex.ru" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
+                            required id="Email" name="email" placeholder="example@gmx.de" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
                     <div className="register__error">{errors.email}</div> 
 
                     <label className="register__subtitle"> Пароль </label>
