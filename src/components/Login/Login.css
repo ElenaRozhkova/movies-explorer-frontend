@@ -69,7 +69,8 @@
     font-size: 13px;
     line-height: 16px;
     color: #fff;
-    width: 396px;
+    max-width: 396px;
+    width: 100%;
     margin-bottom: 20px;
     height: 46px;
     text-indent: 15px;
@@ -122,6 +123,10 @@
     background: #3456F3;
     border: none;
     cursor: pointer;
+}
+
+.login__conteiner {
+    width: 100%;
 }
 
 .login__submit {
