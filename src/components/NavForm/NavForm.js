@@ -6,8 +6,8 @@ import close from '../../images/close.svg';
 function NavForm({ form, closeForm }) {
  
   return (
-        <section class="form" className={`form ${form ? "form__open" : ""}`}>
-            <div class="form__toggle">
+        <section className="form" className={`form ${form ? "form__open" : ""}`}>
+            <div className="form__toggle">
                 <img className="close-image" src={close} alt="close" onClick={closeForm}/>
                 <nav className="form__menu">
                     <Link to="/" style={{ textDecoration: 'none' }}><div className="form__item">Главная</div></Link>

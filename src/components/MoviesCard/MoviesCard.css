@@ -9,10 +9,11 @@
     padding-bottom: 14px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    cursor: pointer;
 }
 
 .card__size {
-    height: 190px;
+    height: 210px;
     background-color: #222222;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -67,6 +68,11 @@
     background-position: center;
     cursor: pointer;
     transition: 0.3s;
+}
+
+.card__vector-liked {
+    background-image: url("./../../images/like_white.svg");
+    transition: 0.8s;
 }
 
 .card__vector-like:hover {

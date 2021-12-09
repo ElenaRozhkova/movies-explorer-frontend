@@ -1,0 +1,114 @@
+.popup {
+    font-family: 'Inter', Arial, sans-serif;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+.popup_opened {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+}
+.popup__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 430px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-end: 0;
+    border-width: 0;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+}
+.popup__form {
+    width: 100%;
+}
+
+.popup__form-set {
+    border: 0;
+    padding: 34px 36px 36px 36px;
+}
+
+.popup__close {
+    position: absolute;
+    border: none;
+    padding: 0;
+    top: -40px;
+    right: -40px;
+    cursor: pointer;
+    background-color: transparent;
+    transform: rotate(-45deg);
+    outline: none;
+}
+
+.popup__close:hover {
+    opacity: 0.6;
+}
+.popup__close-icon {
+    background-image: url(../../images/CloseIcon.png);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+    min-width: 40px;
+    min-height: 40px;
+
+}
+
+.popup__close-icon:hover {
+    opacity: 0.6;
+}
+
+.popup__form-registered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 26px 24px 24px 24px;
+    align-items: center;
+
+}
+
+.popup__registered {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+    
+    }
+@media screen and (max-width: 760px) {
+    .popup__container {
+        max-width: 282px;
+    }
+    .popup__form-set {
+        padding: 25px 22px 25px 22px;
+    }
+    .popup__close {
+        right: 0;
+        top: -40px;
+    }
+    .popup__close-icon {
+        min-width: 26px;
+        min-height: 26px;
+    }
+}

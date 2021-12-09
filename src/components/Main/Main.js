@@ -6,21 +6,27 @@ import Techs from './Techs/Techs';
 import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio';
 import Header from './../Header/Header';
+import Navigation from './../Navigation/Navigation';
 import logo from '../../images/logo__COLOR_main-1.svg';
 import { Link } from 'react-router-dom';
 
-function Main() {
+function Main({loggedIn}) {
+
   return (
     <div className="root">
-     <Header>
+      {loggedIn ?
+           <Navigation setOnForm={ false }/> :
+           <Header>
             <img src={logo} alt="" className="mainlogo" />
             <nav className="menu__header">
                 <Link to="/signup" className="menu__item">Регистрация</Link>
                 <button className="menu__button">
-                    <Link to="/movies" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Войти</Link>
+                    <Link to="/signin" style={{ textDecoration: 'none' }} className="menu__item menu__item_dark">Войти</Link>
                 </button>
             </nav>
-     </Header>
+           </Header>
+    }
+
      <Promo />
      <NavTab />
      <AboutProject />
