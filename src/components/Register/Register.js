@@ -31,7 +31,7 @@ function Register({onRegister}) {
                     <label className="register__subtitle"> Имя </label>
                     <input className={`register__input ${errors.name ? "register__input_type_error":""}`}  value={values.name || ""} 
                             onChange={handleChange}  
-                            type="text" required id="Name" name="name" placeholder="Elena" 
+                            type="text" required id="Name" name="name" placeholder="Your Name" 
                             minLength={2} maxLength={30}
                             pattern="^[a-zA-Zа-яА-ЯЁё\s\-]+$"/>
                     <div className="register__error">{errors.name}</div> 
@@ -39,7 +39,7 @@ function Register({onRegister}) {
                     <label className="register__subtitle"> E-mail </label>
                     <input className={`register__input ${errors.email ? "register__input_type_error":""}`} 
                             type="email" value={values.email || ""} onChange={handleChange}
-                            required id="Email" name="email" placeholder="example@gmx.de" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
+                            required id="Email" name="email" placeholder="Your Email" pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"/>
                     <div className="register__error">{errors.email}</div> 
 
                     <label className="register__subtitle"> Пароль </label>

@@ -165,7 +165,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {  
+@media screen and (max-width: 500px) {  
     .login__container{
         padding-top: 56px;
         padding-bottom: 30px;
