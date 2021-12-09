@@ -148,7 +148,7 @@
             padding-bottom: 60px;
             }
         .myprofile__update {
-            padding-top: 365px;
+            padding-top: 50px;
             font-size: 12px;
             line-height: 15px;
         }
@@ -157,7 +157,7 @@
             line-height: 15px;
         }
         .myprofile__elements {
-            max-width: 260px;
+            max-width: 290px;
             width: 100%;
         }
     }
