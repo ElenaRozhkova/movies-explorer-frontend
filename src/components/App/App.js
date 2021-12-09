@@ -205,7 +205,7 @@ useEffect(() => {
               }
           })
           .catch((err) => {
-                setText("Something went wrong! Please try again.");
+                setText("Email already exists! Please try again.");
                 history.push('/signup');
                 handleLoginClick(true);
           })
