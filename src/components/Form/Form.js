@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 //хук управления формой
 export function Form({children, onSubmit, buttonText, labelQuestion, labelText, isValid, path}) {
+
   return (
       <form className="container__form" onSubmit={onSubmit}>
         {children}  
